@@ -68,6 +68,11 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.timber)
 
+    //Retrofit
+    api(libs.retrofit2.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.okhttp3.interceptor)
+
     // Dagger Hilt
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
