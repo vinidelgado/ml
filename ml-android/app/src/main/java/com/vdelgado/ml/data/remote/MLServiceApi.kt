@@ -1,6 +1,5 @@
 package com.vdelgado.ml.data.remote
 
-import com.vdelgado.ml.domain.model.MLSearchProduct
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -12,5 +11,5 @@ interface MLServiceApi {
         @Query("q") query: String,
         @Query("limit") limit: Int,
         @Query("offset") offset: Int
-    ): MLSearchProduct
+    ): MLSearchProductResponse
 }

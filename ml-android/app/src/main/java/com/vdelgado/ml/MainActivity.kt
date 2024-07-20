@@ -4,60 +4,138 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.vdelgado.ml.domain.model.MLProduct
+import com.vdelgado.ml.domain.model.MLProductFormatted
+import com.vdelgado.ml.presentation.EmbeddedSearchBar
 import com.vdelgado.ml.presentation.HomeViewModel
 import com.vdelgado.ml.ui.theme.MLTheme
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
+import kotlinx.coroutines.flow.Flow
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             val viewModel: HomeViewModel = hiltViewModel()
-            val items = viewModel.searchProductPager("Poco X3 NFC").collectAsLazyPagingItems()
-//            viewModel.searchProduct("Poco X3 NFC")
+            var text by remember { mutableStateOf("") }
+            var active by remember { mutableStateOf(false) }
             MLTheme {
-                Timber.d("MainActivity")
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Button(
-                        onClick = {
-
+                Scaffold(topBar = {
+                    SearchBar(
+                        query = text,
+                        onQueryChange = {
+                            text = it
                         },
-                        modifier = Modifier.padding(innerPadding)
+                        onSearch = {
+                            if(active && text.isNotEmpty()){
+                                viewModel.searchProductPager(text)
+                            }
+                            active = false
+                        },
+                        active = active,
+                        onActiveChange = {
+                            active = it
+                        },
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Default.Search,
+                                contentDescription = "Buscar produto"
+                            )
+                        },
+                        placeholder = {
+                            Text(text = "Buscar produto")
+                        },
+                        trailingIcon = {
+                            if (active) {
+                                IconButton(onClick = {
+                                    if (text.isNotEmpty()) {
+                                        text = ""
+                                    } else {
+                                        active = false
+                                    }
+                                }) {
+                                    Icon(
+                                        imageVector = Icons.Default.Close,
+                                        contentDescription = "Buscar produto"
+                                    )
+                                }
+                            }
+                        },
+                        modifier = Modifier.fillMaxWidth()
                     ) {
-                        Text("Submit Request")
+                        //TODO: Inserir items
                     }
-
-                    ProductList(products = items, modifier = Modifier.fillMaxWidth())
+                }, modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    viewModel.state.value.products?.let { items ->
+                        val products = items.collectAsLazyPagingItems()
+                        ProductList(
+                            products = products, modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(innerPadding)
+                        )
+                    }
                 }
             }
         }
     }
 }
 
+
 @Composable
-fun ProductList(modifier: Modifier = Modifier, products: LazyPagingItems<MLProduct>) {
-    LazyColumn(modifier = modifier) {
+fun ProductList(modifier: Modifier = Modifier, products: LazyPagingItems<MLProductFormatted>) {
+    LazyColumn(modifier = modifier, verticalArrangement = Arrangement.spacedBy(12.dp)) {
         items(products.itemCount) { index ->
             val product = products[index]
             if (product != null) {
-                Text(text = product.title ?: "")
+                ProductItem(
+                    modifier = Modifier.fillMaxHeight(0.3f),
+                    title = product.title,
+                    originalPrice = product.originalPrice,
+                    price = product.price,
+                    imageUrl = product.imageUrl,
+                    freeShipping = product.freeShipping,
+                    installments = product.installments
+                )
+                if (index < products.itemCount)
+                    HorizontalDivider(color = Color(0xFFEFEFEF), thickness = 1.dp)
             }
         }
     }
 }
+
