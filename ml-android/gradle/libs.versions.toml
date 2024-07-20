@@ -1,8 +1,9 @@
 [versions]
 accompanist = "0.31.4-beta"
 agp = "8.5.1"
-kotlin = "1.9.0"
+coil = "2.4.0"
 coreKtx = "1.13.1"
+kotlin = "1.9.0"
 hilt = "2.49"
 hiltNavCompose = "1.2.0"
 junit = "4.13.2"
@@ -49,6 +50,8 @@ okhttp3-interceptor = { group = "com.squareup.okhttp3", name = "logging-intercep
 accompanist-systemuicontroller = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "accompanist" }
 paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
 paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingCompose" }
+
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 
