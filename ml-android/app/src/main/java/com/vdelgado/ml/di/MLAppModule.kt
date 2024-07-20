@@ -3,9 +3,7 @@ package com.vdelgado.ml.di
 import com.vdelgado.ml.Constants.BASE_URL
 import com.vdelgado.ml.data.remote.MLServiceApi
 import com.vdelgado.ml.domain.repository.MLSearchProductRepository
-import com.vdelgado.ml.domain.repository.ProductDataSource
-import com.vdelgado.ml.domain.repository.impl.MLSearchProductRepositoryImpl
-import com.vdelgado.ml.domain.usecase.product.MLSearchProductDataSourceUseCase
+import com.vdelgado.ml.data.repository.MLSearchProductRepositoryImpl
 import com.vdelgado.ml.domain.usecase.product.MLSearchProductUseCase
 import dagger.Module
 import dagger.Provides
@@ -48,15 +46,6 @@ object MLAppModule {
 
     @Provides
     @Singleton
-    fun provideProductDataSource(mlServiceApi: MLServiceApi) = ProductDataSource(mlServiceApi)
-
-    @Provides
-    @Singleton
     fun provideSearchProductUseCase(repository: MLSearchProductRepository) =
         MLSearchProductUseCase(repository)
-
-    @Provides
-    @Singleton
-    fun provideMLSearchProductDataSourceUseCase(dataSource: ProductDataSource) =
-        MLSearchProductDataSourceUseCase(dataSource)
 }
