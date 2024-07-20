@@ -144,7 +144,7 @@ fun ProgressLoading() {
 }
 
 @Composable
-fun ErrorUser(modifier: Modifier = Modifier) {
+fun ErrorUser() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -183,7 +183,6 @@ fun ProductList(modifier: Modifier = Modifier, products: LazyPagingItems<MLProdu
             val product = products[index]
             if (product != null) {
                 ProductItem(
-                    modifier = Modifier.fillMaxHeight(0.3f),
                     title = product.title,
                     originalPrice = product.originalPrice,
                     price = product.price,

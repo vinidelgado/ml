@@ -27,7 +27,6 @@ import com.vdelgado.ml.ui.theme.MLTheme
 @Composable
 fun ProductItem(
     imageUrl: String?,
-    modifier: Modifier = Modifier,
     title: String,
     originalPrice: String,
     price: String,
@@ -115,7 +114,6 @@ private fun ProductItemPreview() {
         )
         Column {
             ProductItem(
-                modifier = Modifier.fillMaxWidth(),
                 title = "Moto G6 Plus Dual Sim 64 Gb Nimbus 4 Gb Ram",
                 originalPrice = "R$ 698,99",
                 price = "R$ 750,00",
