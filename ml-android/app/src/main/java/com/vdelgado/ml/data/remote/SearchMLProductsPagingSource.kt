@@ -3,6 +3,9 @@ package com.vdelgado.ml.data.remote
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.vdelgado.ml.domain.model.MLProductFormatted
+import okio.IOException
+import retrofit2.HttpException
+import timber.log.Timber
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -49,9 +52,12 @@ class SearchMLProductsPagingSource(
                 },
                 prevKey = null
             )
-        } catch (ex: Exception) {
-            ex.printStackTrace()
-            LoadResult.Error(throwable = ex)
+        } catch (e: IOException) {
+            Timber.e(e)
+            LoadResult.Error(e)
+        } catch (e: HttpException) {
+            Timber.e(e)
+            LoadResult.Error(e)
         }
     }
 
