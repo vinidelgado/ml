@@ -24,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -44,8 +45,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val viewModel: HomeViewModel = hiltViewModel()
-            var text by remember { mutableStateOf("") }
-            var active by remember { mutableStateOf(false) }
+            var text by rememberSaveable { mutableStateOf("") }
+            var active by rememberSaveable { mutableStateOf(false) }
             MLTheme {
                 Scaffold(topBar = {
                     SearchBar(
