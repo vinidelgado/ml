@@ -1,13 +1,18 @@
 package com.vdelgado.ml.di
 
+import android.content.Context
 import com.vdelgado.ml.Constants.BASE_URL
+import com.vdelgado.ml.data.remote.LiveNetworkMonitor
+import com.vdelgado.ml.data.remote.MLNetworkMonitorInterceptor
 import com.vdelgado.ml.data.remote.MLServiceApi
+import com.vdelgado.ml.data.remote.NetworkMonitor
 import com.vdelgado.ml.domain.repository.MLSearchProductRepository
 import com.vdelgado.ml.data.repository.MLSearchProductRepositoryImpl
 import com.vdelgado.ml.domain.usecase.product.MLSearchProductUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,13 +24,21 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object MLAppModule {
     @Provides
-    fun provideRetrofit(): Retrofit {
+    fun provideNetworkMonitor(
+        @ApplicationContext appContext: Context
+    ): NetworkMonitor {
+        return LiveNetworkMonitor(appContext)
+    }
+
+    @Provides
+    fun provideRetrofit(liveNetworkMonitor: NetworkMonitor): Retrofit {
         val client = OkHttpClient
             .Builder()
             .addInterceptor(
                 HttpLoggingInterceptor()
                     .setLevel(HttpLoggingInterceptor.Level.BODY)
             )
+            .addInterceptor(MLNetworkMonitorInterceptor(liveNetworkMonitor))
             .build()
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
