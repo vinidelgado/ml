@@ -1,4 +1,4 @@
-package com.vdelgado.ml.presentation
+package com.vdelgado.ml.presentation.navigation.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
