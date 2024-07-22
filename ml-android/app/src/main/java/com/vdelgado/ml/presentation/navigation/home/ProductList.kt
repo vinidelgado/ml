@@ -13,7 +13,6 @@ import com.vdelgado.ml.data.remote.NoNetworkException
 import com.vdelgado.ml.domain.model.MLProductFormatted
 import com.vdelgado.ml.presentation.navigation.commons.ErrorScreen
 import com.vdelgado.ml.presentation.navigation.commons.ProgressLoading
-import retrofit2.HttpException
 
 @Composable
 fun ProductList(modifier: Modifier = Modifier, products: LazyPagingItems<MLProductFormatted>) {
