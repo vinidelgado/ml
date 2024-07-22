@@ -28,7 +28,6 @@ fun HomeScreen(
     event: (HomeEvent) -> Unit,
 //    navigateToDetails: (MLProductFormatted) -> Unit
 ) {
-//    var text by rememberSaveable { mutableStateOf("") }
     var active by rememberSaveable { mutableStateOf(false) }
     Scaffold(topBar = {
         SearchBar(
