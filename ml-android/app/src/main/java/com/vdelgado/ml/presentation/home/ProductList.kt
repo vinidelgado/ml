@@ -1,4 +1,4 @@
-package com.vdelgado.ml.presentation.navigation.home
+package com.vdelgado.ml.presentation.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,6 +13,7 @@ import com.vdelgado.ml.data.remote.NoNetworkException
 import com.vdelgado.ml.domain.model.MLProductFormatted
 import com.vdelgado.ml.presentation.navigation.commons.ErrorScreen
 import com.vdelgado.ml.presentation.navigation.commons.ProgressLoading
+import com.vdelgado.ml.presentation.navigation.home.ProductItem
 
 @Composable
 fun ProductList(modifier: Modifier = Modifier, products: LazyPagingItems<MLProductFormatted>) {

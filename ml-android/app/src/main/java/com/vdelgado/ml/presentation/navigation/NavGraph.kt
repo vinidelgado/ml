@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.vdelgado.ml.presentation.navigation.home.HomeScreen
-import com.vdelgado.ml.presentation.navigation.home.HomeViewModel
+import com.vdelgado.ml.presentation.home.HomeViewModel
 
 @Composable
 fun NavGraph(startDestination: String) {

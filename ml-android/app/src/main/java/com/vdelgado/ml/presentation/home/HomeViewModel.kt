@@ -1,5 +1,6 @@
-package com.vdelgado.ml.presentation.navigation.home
+package com.vdelgado.ml.presentation.home
 
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,9 +8,9 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.vdelgado.ml.domain.model.MLProductFormatted
 import com.vdelgado.ml.domain.usecase.product.MLSearchProductUseCase
+import com.vdelgado.ml.presentation.navigation.home.HomeEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
-import androidx.compose.runtime.State
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -32,6 +33,10 @@ class HomeViewModel @Inject constructor(
             is HomeEvent.SearchProduct -> {
                 Timber.d("Call function to list products")
                 searchProductPager()
+            }
+
+            else -> {
+                Timber.e("Event not handled")
             }
         }
     }

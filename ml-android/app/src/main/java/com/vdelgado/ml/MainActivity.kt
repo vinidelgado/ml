@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.vdelgado.ml.presentation.navigation.NavGraph
 import com.vdelgado.ml.presentation.navigation.Route
+import com.vdelgado.ml.ui.theme.MLPrimaryDark
 import com.vdelgado.ml.ui.theme.MLTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,7 +27,7 @@ class MainActivity : ComponentActivity() {
                 val systemController = rememberSystemUiController()
                 SideEffect {
                     systemController.setSystemBarsColor(
-                        color = Color.Transparent,
+                        color = MLPrimaryDark,
                         darkIcons = true
                     )
                 }

@@ -19,6 +19,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.vdelgado.ml.presentation.home.ProductList
+import com.vdelgado.ml.presentation.home.SearchState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -75,7 +77,8 @@ fun HomeScreen(
         ) {
             //TODO: Inserir items
         }
-    }, modifier = Modifier.fillMaxSize()) { innerPadding ->
+    },
+        modifier = Modifier.fillMaxSize()) { innerPadding ->
         state.products?.let { items ->
             val products = items.collectAsLazyPagingItems()
             ProductList(
