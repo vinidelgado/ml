@@ -68,6 +68,9 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.timber)
 
+    // Compose Navigation
+    implementation(libs.navigation.compose)
+
     //Retrofit
     api(libs.retrofit2.retrofit)
     implementation(libs.converter.gson)

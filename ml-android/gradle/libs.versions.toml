@@ -17,6 +17,7 @@ paging = "3.3.0"
 pagingCompose = "3.3.0"
 retrofitVersion = "2.11.0"
 timber = "5.0.1"
+nav = "2.7.7"
 
 # @keep
 minSdk = "28"
@@ -54,6 +55,8 @@ paging-compose = { group = "androidx.paging", name = "paging-compose", version.r
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+
+navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "nav" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
