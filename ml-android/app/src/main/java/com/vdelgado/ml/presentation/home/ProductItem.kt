@@ -1,14 +1,19 @@
 package com.vdelgado.ml.presentation.navigation.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,7 +43,16 @@ fun ProductItem(
             .height(200.dp)
             .padding(8.dp), verticalAlignment = Alignment.Top
     ) {
-        ProductImage(imageUrl)
+        Column(
+            Modifier
+                .fillMaxWidth(0.4f)
+                .fillMaxHeight().background(Color.Transparent, shape = RoundedCornerShape(8.dp)),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            ProductImage(imageUrl)
+        }
+
         Column(
             modifier = Modifier
                 .weight(0.6f)
@@ -95,10 +109,10 @@ fun ProductItem(
 fun ProductImage(imageUrl: String?) {
     if (!imageUrl.isNullOrEmpty()) {
         AsyncImage(
-            modifier = Modifier.fillMaxWidth(0.4f),
+            modifier = Modifier.fillMaxWidth().padding(4.dp),
             model = imageUrl,
             contentDescription = null,
-            contentScale = ContentScale.FillHeight
+            contentScale = ContentScale.FillWidth
         )
     }
 }
