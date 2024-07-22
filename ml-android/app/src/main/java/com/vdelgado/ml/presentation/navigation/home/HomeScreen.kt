@@ -18,10 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.vdelgado.ml.presentation.navigation.commons.ErrorScreen
-import com.vdelgado.ml.presentation.navigation.commons.ProgressLoading
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
