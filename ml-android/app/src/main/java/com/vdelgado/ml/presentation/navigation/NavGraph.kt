@@ -1,13 +1,11 @@
 package com.vdelgado.ml.presentation.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.vdelgado.ml.presentation.detail.DetailItemEvent
 import com.vdelgado.ml.presentation.detail.ProductDetailScreen
 import com.vdelgado.ml.presentation.detail.ProductDetailViewModel
 import com.vdelgado.ml.presentation.home.HomeScreen
