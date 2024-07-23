@@ -28,6 +28,7 @@ class MLProductItemRepositoryImpl(
                 freeShipping = response.shipping?.freeShipping ?: false,
                 quantity = response.initialQuantity,
                 warranty = response.warranty ?: "",
+                permalink = response.permalink,
                 pictures = response.pictures.map {
                     it.url
                 }

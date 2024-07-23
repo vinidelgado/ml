@@ -19,7 +19,7 @@ data class MLProductItemResponse(
 //    @SerializedName("listing_type_id") val listingTypeId: String,
     @SerializedName("condition") val condition: String,
     @SerializedName("warranty") val warranty: String?,
-//    @SerializedName("permalink") val permalink: String,
+    @SerializedName("permalink") val permalink: String,
 //    @SerializedName("thumbnail_id") val thumbnailId: String,
 //    @SerializedName("thumbnail") val thumbnail: String,
     @SerializedName("pictures") val pictures: List<MLProductItemPictureResponse>,
