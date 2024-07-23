@@ -1,4 +1,4 @@
-package com.vdelgado.ml.presentation.navigation.home
+package com.vdelgado.ml.presentation.home
 
 sealed class HomeEvent {
     data object SearchProduct : HomeEvent()

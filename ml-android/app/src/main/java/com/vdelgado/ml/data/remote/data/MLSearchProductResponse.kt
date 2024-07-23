@@ -1,4 +1,4 @@
-package com.vdelgado.ml.data.remote
+package com.vdelgado.ml.data.remote.data
 
 import com.google.gson.annotations.SerializedName
 

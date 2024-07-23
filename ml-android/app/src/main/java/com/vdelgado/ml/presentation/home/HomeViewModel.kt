@@ -8,7 +8,6 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.vdelgado.ml.domain.model.MLProductFormatted
 import com.vdelgado.ml.domain.usecase.product.MLSearchProductUseCase
-import com.vdelgado.ml.presentation.navigation.home.HomeEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import timber.log.Timber
@@ -33,10 +32,6 @@ class HomeViewModel @Inject constructor(
             is HomeEvent.SearchProduct -> {
                 Timber.d("Call function to list products")
                 searchProductPager()
-            }
-
-            else -> {
-                Timber.e("Event not handled")
             }
         }
     }
