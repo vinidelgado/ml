@@ -2,6 +2,8 @@ package com.vdelgado.ml.data.remote
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.vdelgado.ml.data.remote.data.MLInstallmentsResponse
+import com.vdelgado.ml.data.remote.data.MLShippingResponse
 import com.vdelgado.ml.domain.model.MLProductFormatted
 import okio.IOException
 import retrofit2.HttpException
@@ -39,7 +41,8 @@ class SearchMLProductsPagingSource(
                     price = formatPriceWithCurrencyIndicator(product.currencyId, product.price),
                     freeShipping = isFreeShipping(product.shipping),
                     imageUrl = product.thumbnail ?: "",
-                    installments = isInstallmentsAvailable(product.installments)
+                    installments = isInstallmentsAvailable(product.installments),
+                    itemId = product.id
                 )
             }
 

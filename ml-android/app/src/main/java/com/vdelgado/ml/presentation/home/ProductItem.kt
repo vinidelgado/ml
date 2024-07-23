@@ -36,10 +36,11 @@ fun ProductItem(
     originalPrice: String,
     price: String,
     freeShipping: Boolean = false,
-    installments: String
+    installments: String,
+    modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .height(200.dp)
             .padding(8.dp), verticalAlignment = Alignment.Top
     ) {

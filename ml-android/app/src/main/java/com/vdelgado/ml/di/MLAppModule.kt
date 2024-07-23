@@ -4,10 +4,13 @@ import android.content.Context
 import com.vdelgado.ml.Constants.BASE_URL
 import com.vdelgado.ml.data.remote.LiveNetworkMonitor
 import com.vdelgado.ml.data.remote.MLNetworkMonitorInterceptor
+import com.vdelgado.ml.data.remote.MLProductItemRepositoryImpl
 import com.vdelgado.ml.data.remote.MLServiceApi
 import com.vdelgado.ml.data.remote.NetworkMonitor
-import com.vdelgado.ml.domain.repository.MLSearchProductRepository
 import com.vdelgado.ml.data.repository.MLSearchProductRepositoryImpl
+import com.vdelgado.ml.domain.repository.MLProductItemRepository
+import com.vdelgado.ml.domain.repository.MLSearchProductRepository
+import com.vdelgado.ml.domain.usecase.product.MLItemProductUseCase
 import com.vdelgado.ml.domain.usecase.product.MLSearchProductUseCase
 import dagger.Module
 import dagger.Provides
@@ -59,6 +62,16 @@ object MLAppModule {
 
     @Provides
     @Singleton
+    fun provideMLProductItemRepository(mlServiceApi: MLServiceApi): MLProductItemRepository =
+        MLProductItemRepositoryImpl(mlServiceApi)
+
+    @Provides
+    @Singleton
     fun provideSearchProductUseCase(repository: MLSearchProductRepository) =
         MLSearchProductUseCase(repository)
+
+    @Provides
+    @Singleton
+    fun provideMLItemProductUseCase(repository: MLProductItemRepository) =
+        MLItemProductUseCase(repository)
 }

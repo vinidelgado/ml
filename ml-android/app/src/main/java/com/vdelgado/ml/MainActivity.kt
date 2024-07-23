@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.vdelgado.ml.presentation.navigation.NavGraph
 import com.vdelgado.ml.presentation.navigation.Route

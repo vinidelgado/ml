@@ -1,5 +1,6 @@
 package com.vdelgado.ml.presentation.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.HorizontalDivider
@@ -16,7 +17,11 @@ import com.vdelgado.ml.presentation.navigation.commons.ProgressLoading
 import com.vdelgado.ml.presentation.navigation.home.ProductItem
 
 @Composable
-fun ProductList(modifier: Modifier = Modifier, products: LazyPagingItems<MLProductFormatted>) {
+fun ProductList(
+    modifier: Modifier = Modifier,
+    products: LazyPagingItems<MLProductFormatted>,
+    navigateToDetails: (String) -> Unit
+) {
     val handlingResult = handlePagingResults(products)
     if (handlingResult) {
         LazyColumn(modifier = modifier, verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -29,7 +34,10 @@ fun ProductList(modifier: Modifier = Modifier, products: LazyPagingItems<MLProdu
                         price = product.price,
                         imageUrl = product.imageUrl,
                         freeShipping = product.freeShipping,
-                        installments = product.installments
+                        installments = product.installments,
+                        modifier = Modifier.clickable {
+                            navigateToDetails(product.itemId)
+                        }
                     )
                     if (index < products.itemCount)
                         HorizontalDivider(color = Color(0xFFEFEFEF), thickness = 1.dp)

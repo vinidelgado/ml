@@ -1,4 +1,4 @@
-package com.vdelgado.ml.presentation.navigation.home
+package com.vdelgado.ml.presentation.home
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,8 +19,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.vdelgado.ml.presentation.home.ProductList
-import com.vdelgado.ml.presentation.home.SearchState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -28,7 +26,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     state: SearchState,
     event: (HomeEvent) -> Unit,
-//    navigateToDetails: (MLProductFormatted) -> Unit
+    navigateToDetails: (String) -> Unit
 ) {
     var active by rememberSaveable { mutableStateOf(false) }
     Scaffold(topBar = {
@@ -84,7 +82,10 @@ fun HomeScreen(
             ProductList(
                 products = products, modifier = Modifier
                     .fillMaxWidth()
-                    .padding(innerPadding)
+                    .padding(innerPadding),
+                navigateToDetails = {
+                    navigateToDetails(it)
+                }
             )
         }
     }

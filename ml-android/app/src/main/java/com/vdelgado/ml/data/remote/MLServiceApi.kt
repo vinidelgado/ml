@@ -1,5 +1,7 @@
 package com.vdelgado.ml.data.remote
 
+import com.vdelgado.ml.data.remote.data.MLProductItemResponse
+import com.vdelgado.ml.data.remote.data.MLSearchProductResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -12,4 +14,9 @@ interface MLServiceApi {
         @Query("limit") limit: Int,
         @Query("offset") offset: Int
     ): MLSearchProductResponse
+
+    @GET("/items/{id}")
+    suspend fun searchProductDetail(
+        @Path("id") id: String
+    ): MLProductItemResponse
 }
