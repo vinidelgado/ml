@@ -1,5 +1,8 @@
 package com.vdelgado.ml.presentation.navigation
 
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -28,7 +31,17 @@ fun NavGraph(startDestination: String) {
                 })
         }
         composable(
-            route = Route.ProductDetailScreen.router
+            route = Route.ProductDetailScreen.router,
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Start,
+                ) + fadeIn()
+            },
+            exitTransition = {
+                slideOutOfContainer(
+                    AnimatedContentTransitionScope.SlideDirection.End,
+                ) + fadeOut()
+            }
         ) {
             val productDetailViewModel: ProductDetailViewModel = hiltViewModel()
             navController.previousBackStackEntry?.savedStateHandle?.get<String>("itemId")
