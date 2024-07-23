@@ -10,7 +10,7 @@ import com.vdelgado.ml.data.remote.common.NetworkMonitor
 import com.vdelgado.ml.data.repository.MLSearchProductRepositoryImpl
 import com.vdelgado.ml.domain.repository.MLProductItemRepository
 import com.vdelgado.ml.domain.repository.MLSearchProductRepository
-import com.vdelgado.ml.domain.usecase.product.MLItemProductUseCase
+import com.vdelgado.ml.domain.usecase.product.MLProductItemUseCase
 import com.vdelgado.ml.domain.usecase.product.MLSearchProductUseCase
 import dagger.Module
 import dagger.Provides
@@ -73,5 +73,5 @@ object MLAppModule {
     @Provides
     @Singleton
     fun provideMLItemProductUseCase(repository: MLProductItemRepository) =
-        MLItemProductUseCase(repository)
+        MLProductItemUseCase(repository)
 }

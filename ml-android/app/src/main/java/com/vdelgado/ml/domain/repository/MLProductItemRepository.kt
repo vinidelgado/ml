@@ -1,7 +1,8 @@
 package com.vdelgado.ml.domain.repository
 
-import com.vdelgado.ml.data.remote.data.MLProductItemResponse
+import com.vdelgado.ml.domain.model.Result
+import com.vdelgado.ml.domain.model.MLProductItem
 
 interface MLProductItemRepository {
-    suspend fun getProductDetail(productItem: String): MLProductItemResponse
+    suspend fun getProductDetail(productItem: String): Result<MLProductItem>
 }

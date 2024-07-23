@@ -4,20 +4,17 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vdelgado.ml.data.remote.data.MLProductItemResponse
-import com.vdelgado.ml.domain.usecase.product.MLItemProductUseCase
+import com.vdelgado.ml.domain.model.MLProductItem
+import com.vdelgado.ml.domain.model.Result
+import com.vdelgado.ml.domain.usecase.product.MLProductItemUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class ProductDetailViewModel @Inject constructor(
-    private val itemProductUseCase: MLItemProductUseCase,
+    private val itemProductUseCase: MLProductItemUseCase,
 ) : ViewModel() {
 
     private val _state = mutableStateOf(DetailState())
@@ -43,8 +40,20 @@ class ProductDetailViewModel @Inject constructor(
 
     private fun getProductDetail() {
         viewModelScope.launch {
-            val result = itemProductUseCase.invoke(state.value.productItem)
-            _state.value = _state.value.copy(product = result)
+            when (val result = itemProductUseCase.invoke(state.value.productItem)) {
+                is Result.Success.Content -> {
+                    _state.value = _state.value.copy(product = result.data,isError = false)
+                }
+
+                is Result.Success.Error -> {
+                    _state.value = _state.value.copy(isError = true, isNetworkError = true)
+                }
+
+                is Result.Failure -> {
+                    _state.value = _state.value.copy(isError = true, isNetworkError = false)
+                }
+            }
+
         }
     }
 
@@ -52,5 +61,7 @@ class ProductDetailViewModel @Inject constructor(
 
 data class DetailState(
     val productItem: String = "",
-    val product: MLProductItemResponse? = null
+    val product: MLProductItem? = null,
+    val isError: Boolean = false,
+    val isNetworkError: Boolean = false
 )

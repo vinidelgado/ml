@@ -1,4 +1,4 @@
-package com.vdelgado.ml.presentation.navigation.commons
+package com.vdelgado.ml.presentation.commons
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

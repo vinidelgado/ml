@@ -38,7 +38,10 @@ fun NavGraph(startDestination: String) {
                     ProductDetailScreen(
                         state = productDetailViewModel.state,
                         event = productDetailViewModel::onEvent,
-                        itemId = itemId
+                        itemId = itemId,
+                        onBackClick = {
+                            navController.navigateUp()
+                        }
                     )
                 }
         }
