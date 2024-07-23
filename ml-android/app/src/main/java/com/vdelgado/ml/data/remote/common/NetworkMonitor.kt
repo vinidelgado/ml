@@ -1,4 +1,4 @@
-package com.vdelgado.ml.data.remote
+package com.vdelgado.ml.data.remote.common
 
 interface NetworkMonitor {
     fun isConnected():Boolean

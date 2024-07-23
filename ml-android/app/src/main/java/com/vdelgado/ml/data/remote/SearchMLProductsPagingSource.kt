@@ -2,6 +2,7 @@ package com.vdelgado.ml.data.remote
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.vdelgado.ml.data.remote.common.MLServiceApi
 import com.vdelgado.ml.data.remote.data.MLInstallmentsResponse
 import com.vdelgado.ml.data.remote.data.MLShippingResponse
 import com.vdelgado.ml.domain.model.MLProductFormatted

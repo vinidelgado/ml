@@ -2,11 +2,11 @@ package com.vdelgado.ml.di
 
 import android.content.Context
 import com.vdelgado.ml.Constants.BASE_URL
-import com.vdelgado.ml.data.remote.LiveNetworkMonitor
-import com.vdelgado.ml.data.remote.MLNetworkMonitorInterceptor
+import com.vdelgado.ml.data.remote.common.LiveNetworkMonitor
+import com.vdelgado.ml.data.remote.common.MLNetworkMonitorInterceptor
 import com.vdelgado.ml.data.remote.MLProductItemRepositoryImpl
-import com.vdelgado.ml.data.remote.MLServiceApi
-import com.vdelgado.ml.data.remote.NetworkMonitor
+import com.vdelgado.ml.data.remote.common.MLServiceApi
+import com.vdelgado.ml.data.remote.common.NetworkMonitor
 import com.vdelgado.ml.data.repository.MLSearchProductRepositoryImpl
 import com.vdelgado.ml.domain.repository.MLProductItemRepository
 import com.vdelgado.ml.domain.repository.MLSearchProductRepository

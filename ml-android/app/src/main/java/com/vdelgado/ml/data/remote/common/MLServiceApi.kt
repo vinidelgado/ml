@@ -1,4 +1,4 @@
-package com.vdelgado.ml.data.remote
+package com.vdelgado.ml.data.remote.common
 
 import com.vdelgado.ml.data.remote.data.MLProductItemResponse
 import com.vdelgado.ml.data.remote.data.MLSearchProductResponse

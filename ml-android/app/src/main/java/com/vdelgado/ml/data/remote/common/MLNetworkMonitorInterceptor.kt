@@ -1,5 +1,6 @@
-package com.vdelgado.ml.data.remote
+package com.vdelgado.ml.data.remote.common
 
+import com.vdelgado.ml.data.remote.NoNetworkException
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
