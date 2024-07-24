@@ -58,93 +58,17 @@ fun ProductDetails(modifier: Modifier = Modifier, product: MLProductItem) {
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(8.dp))
-        val pagerState = rememberPagerState(pageCount = {
-            product.pictures.size
-        })
-        HorizontalPager(
-            state = pagerState,
-            modifier = modifier,
-        ) { page ->
-            BannerCard(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(350.dp),
-                imageUrl = product.pictures[page]
-            )
-        }
-        Row(
-            Modifier
-                .wrapContentHeight()
-                .fillMaxWidth()
-                .padding(bottom = 8.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            repeat(pagerState.pageCount) { iteration ->
-                val color =
-                    if (pagerState.currentPage == iteration) Color(0xFF368BFE) else Color(0xFFD7D7D7)
-                Box(
-                    modifier = Modifier
-                        .padding(3.dp)
-                        .clip(CircleShape)
-                        .background(color)
-                        .size(8.dp)
-                )
-            }
-        }
+
+        CarrouselImages(product = product)
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        if (product.warranty.isNotEmpty()) {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .background(color = Color(0xFFF5F5F5), shape = RoundedCornerShape(4.dp)),
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = product.warranty,
-                    style = MaterialTheme.typography.bodyLarge,
-                    fontWeight = FontWeight.Light,
-                    color = Color.Black,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(12.dp)
-                )
-            }
-        }
+        Warranty(product = product)
 
-        Spacer(modifier = Modifier.height(16.dp))
+        ProductPrice(product = product)
 
-        if (product.originalPrice.isNotEmpty()) {
-            Text(
-                text = product.originalPrice,
-                style = MaterialTheme.typography.bodyLarge,
-                fontWeight = FontWeight.Light,
-                color = Color.Gray,
-                textDecoration = TextDecoration.LineThrough
-            )
-        }
+        LastQuantity(product = product)
 
-        Text(
-            text = product.price,
-            style = MaterialTheme.typography.headlineLarge,
-            fontWeight = FontWeight.Normal,
-            color = Color.Black
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        if (product.quantity == 1) {
-            Text(
-                text = "Último disponível!",
-                style = MaterialTheme.typography.bodySmall,
-                fontWeight = FontWeight.Normal,
-                color = Color.Black
-            )
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
         val context = LocalContext.current
         val intent = remember {
             Intent(
@@ -170,6 +94,106 @@ fun ProductDetails(modifier: Modifier = Modifier, product: MLProductItem) {
                 text = "Comprar",
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Bold,
+            )
+        }
+    }
+}
+
+@Composable
+fun ProductPrice(modifier: Modifier = Modifier, product: MLProductItem) {
+    if (product.originalPrice.isNotEmpty()) {
+        Text(
+            text = product.originalPrice,
+            style = MaterialTheme.typography.bodyLarge,
+            fontWeight = FontWeight.Light,
+            color = Color.Gray,
+            textDecoration = TextDecoration.LineThrough
+        )
+    }
+
+    Text(
+        text = product.price,
+        style = MaterialTheme.typography.headlineLarge,
+        fontWeight = FontWeight.Normal,
+        color = Color.Black
+    )
+
+    Spacer(modifier = Modifier.height(16.dp))
+}
+
+@Composable
+fun LastQuantity(modifier: Modifier = Modifier, product: MLProductItem) {
+    if (product.quantity == 1) {
+        Text(
+            text = "Último disponível!",
+            style = MaterialTheme.typography.bodySmall,
+            fontWeight = FontWeight.Normal,
+            color = Color.Black
+        )
+    }
+
+    Spacer(modifier = Modifier.height(16.dp))
+}
+
+
+@Composable
+fun Warranty(modifier: Modifier = Modifier, product: MLProductItem) {
+    if (product.warranty.isNotEmpty()) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .background(color = Color(0xFFF5F5F5), shape = RoundedCornerShape(4.dp)),
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = product.warranty,
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Light,
+                color = Color.Black,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(12.dp)
+            )
+        }
+    }
+
+    Spacer(modifier = Modifier.height(16.dp))
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun CarrouselImages(modifier: Modifier = Modifier, product: MLProductItem) {
+    val pagerState = rememberPagerState(pageCount = {
+        product.pictures.size
+    })
+    HorizontalPager(
+        state = pagerState,
+        modifier = modifier,
+    ) { page ->
+        BannerCard(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(350.dp),
+            imageUrl = product.pictures[page]
+        )
+    }
+    Row(
+        Modifier
+            .wrapContentHeight()
+            .fillMaxWidth()
+            .padding(bottom = 8.dp),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        repeat(pagerState.pageCount) { iteration ->
+            val color =
+                if (pagerState.currentPage == iteration) Color(0xFF368BFE) else Color(0xFFD7D7D7)
+            Box(
+                modifier = Modifier
+                    .padding(3.dp)
+                    .clip(CircleShape)
+                    .background(color)
+                    .size(8.dp)
             )
         }
     }
