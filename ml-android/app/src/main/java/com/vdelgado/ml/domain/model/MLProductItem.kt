@@ -11,5 +11,4 @@ class MLProductItem(
     val quantity: Int,
     val pictures: List<String>,
     val warranty: String,
-//    val installments: String
 )
