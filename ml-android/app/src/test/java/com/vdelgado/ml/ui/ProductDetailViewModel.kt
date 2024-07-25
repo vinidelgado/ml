@@ -3,7 +3,7 @@ package com.vdelgado.ml.ui
 import com.vdelgado.ml.common.mockProductItem
 import com.vdelgado.ml.domain.model.Result
 import com.vdelgado.ml.domain.usecase.product.MLProductItemUseCase
-import com.vdelgado.ml.presentation.detail.DetailItemEvent
+import com.vdelgado.ml.presentation.detail.ProductDetailEvent
 import com.vdelgado.ml.presentation.detail.ProductDetailViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -45,11 +45,11 @@ class ProductDetailViewModelTest {
 
     @Test
     fun `onCreate SHOULD not emit any event WHEN userCase returns Success`() = runTest {
-        viewModel.onEvent(DetailItemEvent.UpdateProductItem("MLB120000"))
+        viewModel.onEvent(ProductDetailEvent.UpdateProductProduct("MLB120000"))
         // Given
         coEvery { mlProductItemUseCase(any()) } returns Result.Success.Content(mockProductItem)
         // When
-        viewModel.onEvent(DetailItemEvent.GetInfoProduct)
+        viewModel.onEvent(ProductDetailEvent.GetInfoProduct)
         // Then
         assertEquals(mockProductItem, viewModel.state.value.product)
     }

@@ -22,11 +22,10 @@ import com.vdelgado.ml.ui.theme.MLPrimary
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductDetailScreen(
-    state: State<DetailState>,
-    event: (DetailItemEvent) -> Unit,
+    state: State<ProductDetailViewModel.ProductDetailState>,
+    event: (ProductDetailViewModel.ProductDetailEvent) -> Unit,
     onBackClick: () -> Unit,
-    itemId: String,
-    modifier: Modifier = Modifier
+    itemId: String
 ) {
     Scaffold(
         topBar = {
@@ -57,17 +56,6 @@ fun ProductDetailScreen(
         }
     }
 
-    event(DetailItemEvent.UpdateProductItem(itemId))
-    event(DetailItemEvent.GetInfoProduct)
-}
-
-@Composable
-fun CarrouselImage(modifier: Modifier = Modifier) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight(0.3f)
-    ) {
-
-    }
+    event(ProductDetailViewModel.ProductDetailEvent.UpdateProductProduct(itemId))
+    event(ProductDetailViewModel.ProductDetailEvent.GetInfoProduct)
 }

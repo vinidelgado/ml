@@ -17,16 +17,28 @@ class ProductDetailViewModel @Inject constructor(
     private val itemProductUseCase: MLProductItemUseCase,
 ) : ViewModel() {
 
-    private val _state = mutableStateOf(DetailState())
-    val state: State<DetailState> = _state
+    private val _state = mutableStateOf(ProductDetailState())
+    val state: State<ProductDetailState> = _state
 
-    fun onEvent(event: DetailItemEvent) {
+    data class ProductDetailState(
+        val productItem: String = "",
+        val product: MLProductItem? = null,
+        val isError: Boolean = false,
+        val isNetworkError: Boolean = false
+    )
+
+    sealed class ProductDetailEvent {
+        data class UpdateProductProduct(val productItem: String) : ProductDetailEvent()
+        data object GetInfoProduct : ProductDetailEvent()
+    }
+
+    fun onEvent(event: ProductDetailEvent) {
         when (event) {
-            is DetailItemEvent.GetInfoProduct -> {
+            is ProductDetailEvent.GetInfoProduct -> {
                 getProductDetail()
             }
 
-            is DetailItemEvent.UpdateProductItem -> {
+            is ProductDetailEvent.UpdateProductProduct -> {
                 _state.value = state.value.copy(
                     productItem = event.productItem
                 )
@@ -58,10 +70,3 @@ class ProductDetailViewModel @Inject constructor(
     }
 
 }
-
-data class DetailState(
-    val productItem: String = "",
-    val product: MLProductItem? = null,
-    val isError: Boolean = false,
-    val isNetworkError: Boolean = false
-)
