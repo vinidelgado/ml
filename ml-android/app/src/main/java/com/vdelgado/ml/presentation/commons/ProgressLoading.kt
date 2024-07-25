@@ -1,4 +1,4 @@
-package com.vdelgado.ml.presentation.navigation.commons
+package com.vdelgado.ml.presentation.commons
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ProgressLoading(modifier: Modifier = Modifier) {
+fun ProgressLoading() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
