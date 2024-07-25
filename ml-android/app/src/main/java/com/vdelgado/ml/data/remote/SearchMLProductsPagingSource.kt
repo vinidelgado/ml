@@ -62,6 +62,9 @@ class SearchMLProductsPagingSource(
         } catch (e: HttpException) {
             Timber.e(e)
             LoadResult.Error(e)
+        } catch (e: Exception) {
+            Timber.e(e)
+            LoadResult.Error(e)
         }
     }
 

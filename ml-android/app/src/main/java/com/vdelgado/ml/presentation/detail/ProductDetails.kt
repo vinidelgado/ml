@@ -39,7 +39,6 @@ import androidx.compose.ui.unit.sp
 import com.vdelgado.ml.R
 import com.vdelgado.ml.domain.model.MLProductItem
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ProductDetails(modifier: Modifier = Modifier, product: MLProductItem) {
     Column(

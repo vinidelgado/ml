@@ -44,6 +44,8 @@ class MLProductItemRepositoryImpl(
                 message = httpException.message(),
                 body = httpException.response()?.errorBody()?.string()
             )
+        } catch (e: Exception) {
+            Result.Failure(e)
         }
     }
 
