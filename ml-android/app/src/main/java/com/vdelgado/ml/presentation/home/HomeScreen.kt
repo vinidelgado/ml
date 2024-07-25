@@ -24,8 +24,8 @@ import androidx.paging.compose.collectAsLazyPagingItems
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    state: HomeState,
-    event: (HomeEvent) -> Unit,
+    state: HomeViewModel.HomeState,
+    event: (HomeViewModel.HomeEvent) -> Unit,
     navigateToDetails: (String) -> Unit
 ) {
     var active by rememberSaveable { mutableStateOf(false) }
@@ -34,12 +34,12 @@ fun HomeScreen(
             SearchBar(
                 query = state.searchQuery,
                 onQueryChange = {
-                    event(HomeEvent.UpdateSearchQuery(it))
+                    event(HomeViewModel.HomeEvent.UpdateSearchQuery(it))
                 },
                 onSearch = {
                     if (active && state.searchQuery.isNotEmpty()) {
-                        event(HomeEvent.SearchProduct)
-                        event(HomeEvent.UpdateSearchQuery(state.searchQuery))
+                        event(HomeViewModel.HomeEvent.SearchProduct)
+                        event(HomeViewModel.HomeEvent.UpdateSearchQuery(state.searchQuery))
                     }
                     active = false
                 },
@@ -60,7 +60,7 @@ fun HomeScreen(
                     if (active) {
                         IconButton(onClick = {
                             if (state.searchQuery.isNotEmpty()) {
-                                event(HomeEvent.UpdateSearchQuery(""))
+                                event(HomeViewModel.HomeEvent.UpdateSearchQuery(""))
                             } else {
                                 active = false
                             }
