@@ -1,6 +1,6 @@
 package com.vdelgado.ml.domain.repository
-import com.vdelgado.ml.common.mockMLProductItem
-import com.vdelgado.ml.common.mockMLProductItemResponse
+import com.vdelgado.ml.mock.mockMLProductItem
+import com.vdelgado.ml.mock.mockMLProductItemResponse
 import com.vdelgado.ml.data.remote.MLProductItemRepositoryImpl
 import com.vdelgado.ml.data.remote.NoNetworkException
 import com.vdelgado.ml.data.remote.common.MLServiceApi
@@ -18,7 +18,6 @@ import kotlinx.coroutines.test.setMain
 import okhttp3.ResponseBody
 import org.junit.After
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import retrofit2.HttpException
 import retrofit2.Response

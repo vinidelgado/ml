@@ -1,4 +1,4 @@
-package com.vdelgado.ml.common
+package com.vdelgado.ml.mock
 
 import com.vdelgado.ml.data.remote.data.AvailableFilterValue
 import com.vdelgado.ml.data.remote.data.FilterValue

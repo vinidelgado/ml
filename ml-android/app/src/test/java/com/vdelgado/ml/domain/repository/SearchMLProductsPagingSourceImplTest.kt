@@ -1,8 +1,8 @@
 package com.vdelgado.ml.domain.repository
 
 import androidx.paging.PagingSource
-import com.vdelgado.ml.common.mockMLProductFormatted
-import com.vdelgado.ml.common.mockMLSearchProductResponse
+import com.vdelgado.ml.mock.mockMLProductFormatted
+import com.vdelgado.ml.mock.mockMLSearchProductResponse
 import com.vdelgado.ml.data.remote.NoNetworkException
 import com.vdelgado.ml.data.repository.SearchMLProductsPagingSourceImpl
 import com.vdelgado.ml.data.remote.common.MLServiceApi
@@ -25,7 +25,6 @@ import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class SearchMLProductsPagingSourceImplTest {
-    @get:Rule
     private val api: MLServiceApi = mockk(relaxed = true)
     private lateinit var searchMLProductsPagingSource: SearchMLProductsPagingSourceImpl
     private val dispatcher = UnconfinedTestDispatcher()

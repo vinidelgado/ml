@@ -1,7 +1,6 @@
 package com.vdelgado.ml.data.remote
 
 import com.vdelgado.ml.data.remote.common.MLServiceApi
-import com.vdelgado.ml.data.remote.data.MLShippingResponse
 import com.vdelgado.ml.domain.model.MLProductItem
 import com.vdelgado.ml.domain.model.Result
 import com.vdelgado.ml.domain.repository.MLProductItemRepository

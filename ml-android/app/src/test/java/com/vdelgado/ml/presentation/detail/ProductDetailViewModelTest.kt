@@ -1,6 +1,6 @@
 package com.vdelgado.ml.presentation.detail
 
-import com.vdelgado.ml.common.mockProductItem
+import com.vdelgado.ml.mock.mockProductItem
 import com.vdelgado.ml.domain.model.Result
 import com.vdelgado.ml.domain.usecase.product.MLProductItemUseCase
 import io.mockk.MockKAnnotations
