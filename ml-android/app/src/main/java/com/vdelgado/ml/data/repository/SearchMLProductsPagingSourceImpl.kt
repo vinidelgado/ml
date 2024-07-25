@@ -1,4 +1,4 @@
-package com.vdelgado.ml.data.remote
+package com.vdelgado.ml.data.repository
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -12,7 +12,7 @@ import timber.log.Timber
 import java.text.NumberFormat
 import java.util.Locale
 
-class SearchMLProductsPagingSource(
+class SearchMLProductsPagingSourceImpl(
     private val api: MLServiceApi,
     private val searchQuery: String,
 ) : PagingSource<Int, MLProductFormatted>() {

@@ -1,9 +1,8 @@
-package com.vdelgado.ml.ui
+package com.vdelgado.ml.presentation.detail
 
 import com.vdelgado.ml.common.mockProductItem
 import com.vdelgado.ml.domain.model.Result
 import com.vdelgado.ml.domain.usecase.product.MLProductItemUseCase
-import com.vdelgado.ml.presentation.detail.ProductDetailViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.mockk

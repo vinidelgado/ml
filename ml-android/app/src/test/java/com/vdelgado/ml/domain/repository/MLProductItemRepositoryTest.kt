@@ -26,7 +26,6 @@ import kotlin.test.assertEquals
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class MLProductItemRepositoryTest {
-    @get:Rule
     private val api: MLServiceApi = mockk(relaxed = true)
     private val dispatcher = UnconfinedTestDispatcher()
     private lateinit var repository: MLProductItemRepositoryImpl

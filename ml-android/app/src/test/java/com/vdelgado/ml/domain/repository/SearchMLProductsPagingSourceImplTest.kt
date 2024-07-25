@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import com.vdelgado.ml.common.mockMLProductFormatted
 import com.vdelgado.ml.common.mockMLSearchProductResponse
 import com.vdelgado.ml.data.remote.NoNetworkException
-import com.vdelgado.ml.data.remote.SearchMLProductsPagingSource
+import com.vdelgado.ml.data.repository.SearchMLProductsPagingSourceImpl
 import com.vdelgado.ml.data.remote.common.MLServiceApi
 import com.vdelgado.ml.data.remote.data.MLSearchProductResponse
 import io.mockk.MockKAnnotations
@@ -24,10 +24,10 @@ import org.junit.Rule
 import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class SearchMLProductsPagingSourceTest {
+class SearchMLProductsPagingSourceImplTest {
     @get:Rule
     private val api: MLServiceApi = mockk(relaxed = true)
-    private lateinit var searchMLProductsPagingSource: SearchMLProductsPagingSource
+    private lateinit var searchMLProductsPagingSource: SearchMLProductsPagingSourceImpl
     private val dispatcher = UnconfinedTestDispatcher()
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -135,6 +135,6 @@ class SearchMLProductsPagingSourceTest {
 
 
     private fun setupViewModel() {
-        searchMLProductsPagingSource = SearchMLProductsPagingSource(api, "Teste")
+        searchMLProductsPagingSource = SearchMLProductsPagingSourceImpl(api, "Teste")
     }
 }

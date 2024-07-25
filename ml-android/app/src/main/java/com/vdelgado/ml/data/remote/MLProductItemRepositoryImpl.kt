@@ -49,8 +49,6 @@ class MLProductItemRepositoryImpl(
         }
     }
 
-    private fun isFreeShipping(mlShipping: MLShippingResponse?) = mlShipping?.freeShipping ?: false
-
     private fun discountPriceIsAvailable(currencyId: String?, originalPrice: Double?): String {
         val price = originalPrice ?: 0.0
         return formatPriceWithCurrencyIndicator(currencyId, price)

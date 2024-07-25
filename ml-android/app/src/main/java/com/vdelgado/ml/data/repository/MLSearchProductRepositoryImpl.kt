@@ -4,7 +4,6 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.vdelgado.ml.data.remote.common.MLServiceApi
-import com.vdelgado.ml.data.remote.SearchMLProductsPagingSource
 import com.vdelgado.ml.domain.model.MLProductFormatted
 import com.vdelgado.ml.domain.repository.MLSearchProductRepository
 import kotlinx.coroutines.flow.Flow
@@ -18,7 +17,7 @@ class MLSearchProductRepositoryImpl(private val mlServiceApi: MLServiceApi) :
                 enablePlaceholders = false
             ),
             pagingSourceFactory = {
-                SearchMLProductsPagingSource(mlServiceApi, searchQuery)
+                SearchMLProductsPagingSourceImpl(mlServiceApi, searchQuery)
             }).flow
     }
 }
