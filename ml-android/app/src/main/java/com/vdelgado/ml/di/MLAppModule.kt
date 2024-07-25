@@ -1,7 +1,7 @@
 package com.vdelgado.ml.di
 
 import android.content.Context
-import com.vdelgado.ml.Constants.BASE_URL
+import com.vdelgado.ml.data.Constants.BASE_URL
 import com.vdelgado.ml.data.remote.common.LiveNetworkMonitor
 import com.vdelgado.ml.data.remote.common.MLNetworkMonitorInterceptor
 import com.vdelgado.ml.data.remote.MLProductItemRepositoryImpl

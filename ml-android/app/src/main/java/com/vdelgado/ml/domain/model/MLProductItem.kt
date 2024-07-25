@@ -1,6 +1,6 @@
 package com.vdelgado.ml.domain.model
 
-class MLProductItem(
+data class MLProductItem(
     val condition: String,
     val title: String,
     val itemId: String,

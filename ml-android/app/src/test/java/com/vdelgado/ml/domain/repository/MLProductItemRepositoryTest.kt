@@ -45,7 +45,7 @@ class MLProductItemRepositoryTest {
     }
 
     @Test
-    fun `getProductDetail should return failure result when API call return data`() = runTest {
+    fun `getProductDetail should return success result when API call return data`() = runTest {
         coEvery { api.searchProductDetail(any()) } returns mockMLProductItemResponse
         repository = MLProductItemRepositoryImpl(api)
         val result = repository.getProductDetail("MLB123")
