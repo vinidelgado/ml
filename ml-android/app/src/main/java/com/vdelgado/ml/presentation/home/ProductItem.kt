@@ -1,4 +1,4 @@
-package com.vdelgado.ml.presentation.navigation.home
+package com.vdelgado.ml.presentation.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -11,8 +11,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -31,13 +29,13 @@ import com.vdelgado.ml.ui.theme.MLTheme
 
 @Composable
 fun ProductItem(
+    modifier: Modifier = Modifier,
     imageUrl: String?,
     title: String,
     originalPrice: String,
     price: String,
     freeShipping: Boolean = false,
     installments: String,
-    modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier
@@ -47,7 +45,8 @@ fun ProductItem(
         Column(
             Modifier
                 .fillMaxWidth(0.4f)
-                .fillMaxHeight().background(Color.Transparent, shape = RoundedCornerShape(8.dp)),
+                .fillMaxHeight()
+                .background(Color.Transparent, shape = RoundedCornerShape(8.dp)),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -110,7 +109,9 @@ fun ProductItem(
 fun ProductImage(imageUrl: String?) {
     if (!imageUrl.isNullOrEmpty()) {
         AsyncImage(
-            modifier = Modifier.fillMaxWidth().padding(4.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(4.dp),
             model = imageUrl,
             contentDescription = null,
             contentScale = ContentScale.FillWidth

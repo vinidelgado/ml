@@ -14,7 +14,6 @@ import com.vdelgado.ml.data.remote.NoNetworkException
 import com.vdelgado.ml.domain.model.MLProductFormatted
 import com.vdelgado.ml.presentation.commons.ErrorScreen
 import com.vdelgado.ml.presentation.navigation.commons.ProgressLoading
-import com.vdelgado.ml.presentation.navigation.home.ProductItem
 
 @Composable
 fun ProductList(

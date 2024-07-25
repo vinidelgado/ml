@@ -24,59 +24,61 @@ import androidx.paging.compose.collectAsLazyPagingItems
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    state: SearchState,
+    state: HomeState,
     event: (HomeEvent) -> Unit,
     navigateToDetails: (String) -> Unit
 ) {
     var active by rememberSaveable { mutableStateOf(false) }
-    Scaffold(topBar = {
-        SearchBar(
-            query = state.searchQuery,
-            onQueryChange = {
-                event(HomeEvent.UpdateSearchQuery(it))
-            },
-            onSearch = {
-                if (active && state.searchQuery.isNotEmpty()) {
-                    event(HomeEvent.SearchProduct)
-                    event(HomeEvent.UpdateSearchQuery(state.searchQuery))
-                }
-                active = false
-            },
-            active = active,
-            onActiveChange = {
-                active = it
-            },
-            leadingIcon = {
-                Icon(
-                    imageVector = Icons.Default.Search,
-                    contentDescription = "Buscar produto"
-                )
-            },
-            placeholder = {
-                Text(text = "Buscar produto")
-            },
-            trailingIcon = {
-                if (active) {
-                    IconButton(onClick = {
-                        if (state.searchQuery.isNotEmpty()) {
-                            event(HomeEvent.UpdateSearchQuery(""))
-                        } else {
-                            active = false
-                        }
-                    }) {
-                        Icon(
-                            imageVector = Icons.Default.Close,
-                            contentDescription = "Buscar produto"
-                        )
+    Scaffold(
+        topBar = {
+            SearchBar(
+                query = state.searchQuery,
+                onQueryChange = {
+                    event(HomeEvent.UpdateSearchQuery(it))
+                },
+                onSearch = {
+                    if (active && state.searchQuery.isNotEmpty()) {
+                        event(HomeEvent.SearchProduct)
+                        event(HomeEvent.UpdateSearchQuery(state.searchQuery))
                     }
-                }
-            },
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            //TODO: Inserir items
-        }
-    },
-        modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    active = false
+                },
+                active = active,
+                onActiveChange = {
+                    active = it
+                },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = "Buscar produto"
+                    )
+                },
+                placeholder = {
+                    Text(text = "Buscar produto")
+                },
+                trailingIcon = {
+                    if (active) {
+                        IconButton(onClick = {
+                            if (state.searchQuery.isNotEmpty()) {
+                                event(HomeEvent.UpdateSearchQuery(""))
+                            } else {
+                                active = false
+                            }
+                        }) {
+                            Icon(
+                                imageVector = Icons.Default.Close,
+                                contentDescription = "Buscar produto"
+                            )
+                        }
+                    }
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                //TODO: Inserir items
+            }
+        },
+        modifier = modifier.fillMaxSize()
+    ) { innerPadding ->
         state.products?.let { items ->
             val products = items.collectAsLazyPagingItems()
             ProductList(

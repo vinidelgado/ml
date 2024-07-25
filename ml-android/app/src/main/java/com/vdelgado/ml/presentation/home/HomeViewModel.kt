@@ -18,8 +18,18 @@ class HomeViewModel @Inject constructor(
     private val searchUserCase: MLSearchProductUseCase,
 ) : ViewModel() {
 
-    private val _state = mutableStateOf(SearchState())
-    val state: State<SearchState> = _state
+    private val _state = mutableStateOf(HomeState())
+    val state: State<HomeState> = _state
+
+    data class HomeState(
+        val searchQuery: String = "",
+        val products: Flow<PagingData<MLProductFormatted>>? = null
+    )
+
+    sealed class HomeEvent {
+        data object SearchProduct : HomeEvent()
+        data class UpdateSearchQuery(val searchQuery: String) : HomeEvent()
+    }
 
     fun onEvent(event: HomeEvent) {
         when (event) {
@@ -42,9 +52,3 @@ class HomeViewModel @Inject constructor(
     }
 
 }
-
-
-data class SearchState(
-    val searchQuery: String = "",
-    val products: Flow<PagingData<MLProductFormatted>>? = null
-)
