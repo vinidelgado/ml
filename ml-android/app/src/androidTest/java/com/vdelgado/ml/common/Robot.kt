@@ -10,7 +10,7 @@ import androidx.compose.ui.test.hasTextExactly
 import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.performClick
 
-abstract class Robot(val composeRule: ComposeTestRule) {
+abstract class Robot(private val composeRule: ComposeTestRule) {
     // assertion of buttons and clicking them
     fun clickTextButton(text: String) = composeRule.onNode(hasTextExactly(text)).performClick()
 

@@ -99,7 +99,7 @@ fun ProductDetails(modifier: Modifier = Modifier, product: MLProductItem) {
 }
 
 @Composable
-fun ProductPrice(modifier: Modifier = Modifier, product: MLProductItem) {
+fun ProductPrice(product: MLProductItem) {
     if (product.originalPrice.isNotEmpty()) {
         Text(
             text = product.originalPrice,
@@ -121,7 +121,7 @@ fun ProductPrice(modifier: Modifier = Modifier, product: MLProductItem) {
 }
 
 @Composable
-fun LastQuantity(modifier: Modifier = Modifier, product: MLProductItem) {
+fun LastQuantity(product: MLProductItem) {
     if (product.quantity == 1) {
         Text(
             text = "Último disponível!",
@@ -136,7 +136,7 @@ fun LastQuantity(modifier: Modifier = Modifier, product: MLProductItem) {
 
 
 @Composable
-fun Warranty(modifier: Modifier = Modifier, product: MLProductItem) {
+fun Warranty(product: MLProductItem) {
     if (product.warranty.isNotEmpty()) {
         Column(
             modifier = Modifier
@@ -201,7 +201,7 @@ fun CarrouselImages(modifier: Modifier = Modifier, product: MLProductItem) {
 @Composable
 fun FirstLineInfomartion(modifier: Modifier = Modifier, product: MLProductItem) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight()
     ) {

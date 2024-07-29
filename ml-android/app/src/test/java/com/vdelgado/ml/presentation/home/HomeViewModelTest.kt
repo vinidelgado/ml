@@ -1,8 +1,5 @@
 package com.vdelgado.ml.presentation.home
 
-import com.vdelgado.ml.data.repository.SearchMLProductsPagingSourceImpl
-import com.vdelgado.ml.data.remote.common.MLServiceApi
-import com.vdelgado.ml.domain.repository.MLSearchProductRepository
 import com.vdelgado.ml.domain.usecase.product.MLSearchProductUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.mockk
