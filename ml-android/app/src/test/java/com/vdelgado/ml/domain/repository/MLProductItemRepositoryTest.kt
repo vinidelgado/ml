@@ -16,6 +16,7 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import okhttp3.ResponseBody
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -53,7 +54,7 @@ class MLProductItemRepositoryTest {
 
     @Test
     fun `getProductDetail should return failure result when API call throws HttpException`() = runTest {
-        val error = HttpException(Response.error<MLProductItem>(404, ResponseBody.create(null, "")))
+        val error = HttpException(Response.error<MLProductItem>(404, "".toResponseBody(null)))
         coEvery { api.searchProductDetail(any()) } throws error
         repository = MLProductItemRepositoryImpl(api)
         val result = repository.getProductDetail("MLB123")
