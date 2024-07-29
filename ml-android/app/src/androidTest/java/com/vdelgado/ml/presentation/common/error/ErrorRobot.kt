@@ -1,4 +1,4 @@
-package com.vdelgado.ml.presentation.common
+package com.vdelgado.ml.presentation.common.error
 
 import androidx.compose.ui.test.junit4.ComposeTestRule
 import com.vdelgado.ml.common.Robot
