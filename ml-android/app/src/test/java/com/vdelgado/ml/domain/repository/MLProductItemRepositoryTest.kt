@@ -1,11 +1,11 @@
 package com.vdelgado.ml.domain.repository
-import com.vdelgado.ml.mock.mockMLProductItem
-import com.vdelgado.ml.mock.mockMLProductItemResponse
 import com.vdelgado.ml.data.remote.MLProductItemRepositoryImpl
 import com.vdelgado.ml.data.remote.NoNetworkException
 import com.vdelgado.ml.data.remote.common.MLServiceApi
 import com.vdelgado.ml.domain.model.MLProductItem
 import com.vdelgado.ml.domain.model.Result
+import com.vdelgado.ml.mock.mockMLProductItem
+import com.vdelgado.ml.mock.mockMLProductItemResponse
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -15,7 +15,6 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
-import okhttp3.ResponseBody
 import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.After
 import org.junit.Before

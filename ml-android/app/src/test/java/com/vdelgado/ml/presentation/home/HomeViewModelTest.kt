@@ -18,10 +18,7 @@ import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class HomeViewModelTest {
-    private val mlSearchProductRepository: MLSearchProductRepository = mockk(relaxed = true)
     private val mlSearchProductUseCase: MLSearchProductUseCase = mockk(relaxed = true)
-    private val api: MLServiceApi = mockk(relaxed = true)
-    private val searchPagingSource: SearchMLProductsPagingSourceImpl = mockk(relaxed = true)
     private lateinit var viewModel: HomeViewModel
     private val dispatcher = UnconfinedTestDispatcher()
 

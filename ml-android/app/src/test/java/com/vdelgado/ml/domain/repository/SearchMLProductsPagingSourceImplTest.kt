@@ -1,12 +1,12 @@
 package com.vdelgado.ml.domain.repository
 
 import androidx.paging.PagingSource
-import com.vdelgado.ml.mock.mockMLProductFormatted
-import com.vdelgado.ml.mock.mockMLSearchProductResponse
 import com.vdelgado.ml.data.remote.NoNetworkException
-import com.vdelgado.ml.data.repository.SearchMLProductsPagingSourceImpl
 import com.vdelgado.ml.data.remote.common.MLServiceApi
 import com.vdelgado.ml.data.remote.data.MLSearchProductResponse
+import com.vdelgado.ml.data.repository.SearchMLProductsPagingSourceImpl
+import com.vdelgado.ml.mock.mockMLProductFormatted
+import com.vdelgado.ml.mock.mockMLSearchProductResponse
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -20,7 +20,6 @@ import kotlinx.coroutines.test.setMain
 import okio.IOException
 import org.junit.After
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
