@@ -16,6 +16,7 @@ class LaunchScreenRobot(composeRule: ComposeTestRule) : Robot(composeRule) {
     private val closeIcon by lazy { assertTag("close-icon") }
     private val searchEditText by lazy { assertText("Samsung") } //Fixed product to test, cannot change the product
     private val loading by lazy { assertContentDescriptionText("Carregando as informações") }
+    private val productList by lazy { assertTag("product-list") }
 
     fun initialElementsShowed() {
         searchIcon.assertIsDisplayed()
@@ -39,6 +40,10 @@ class LaunchScreenRobot(composeRule: ComposeTestRule) : Robot(composeRule) {
 
     fun loadingShowed() {
         loading.assertIsDisplayed()
+    }
+
+    fun productListShowed() {
+        productList.assertIsDisplayed()
     }
 
 }

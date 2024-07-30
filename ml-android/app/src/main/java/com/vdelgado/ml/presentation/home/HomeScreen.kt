@@ -86,7 +86,7 @@ fun HomeScreen(
             val products = items.collectAsLazyPagingItems()
             ProductList(
                 products = products, modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth().testTag("product-list")
                     .padding(innerPadding),
                 navigateToDetails = {
                     navigateToDetails(it)

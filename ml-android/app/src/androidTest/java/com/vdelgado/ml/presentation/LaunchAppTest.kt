@@ -1,6 +1,7 @@
 package com.vdelgado.ml.presentation
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.vdelgado.ml.webmock.SuccessDispatcher
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -33,6 +34,7 @@ class LaunchAppTest : BaseScreenTest() {
 
     @Test
     fun searchProductAndLoadSuccessList() {
+        mockWebServer.dispatcher = SuccessDispatcher()
         composeTestRule.apply {
             waitForIdle()
             with(LaunchScreenRobot(composeTestRule)) {
@@ -41,7 +43,7 @@ class LaunchAppTest : BaseScreenTest() {
                 mainClock.advanceTimeBy(400L)
                 mainClock.autoAdvance = true
                 clickSearchButton()
-                loadingShowed()
+                productListShowed()
             }
         }
     }
