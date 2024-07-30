@@ -34,7 +34,7 @@ object MLAppModule {
     }
 
     @Provides
-    fun provideRetrofit(liveNetworkMonitor: NetworkMonitor): Retrofit {
+    fun provideRetrofit(liveNetworkMonitor: NetworkMonitor,url:String): Retrofit {
         val client = OkHttpClient
             .Builder()
             .addInterceptor(
@@ -44,7 +44,7 @@ object MLAppModule {
             .addInterceptor(MLNetworkMonitorInterceptor(liveNetworkMonitor))
             .build()
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

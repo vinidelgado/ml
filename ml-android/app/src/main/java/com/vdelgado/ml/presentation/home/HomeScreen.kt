@@ -18,6 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.paging.compose.collectAsLazyPagingItems
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -50,11 +51,12 @@ fun HomeScreen(
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Search,
-                        contentDescription = "Buscar produto"
+                        contentDescription = null,
+                        modifier.testTag("search-icon")
                     )
                 },
                 placeholder = {
-                    Text(text = "Buscar produto")
+                    Text(text = "Buscar no Mercado Livre")
                 },
                 trailingIcon = {
                     if (active) {
@@ -64,10 +66,11 @@ fun HomeScreen(
                             } else {
                                 active = false
                             }
-                        }) {
+                        },modifier.testTag("clear-icon")) {
                             Icon(
                                 imageVector = Icons.Default.Close,
-                                contentDescription = "Buscar produto"
+                                contentDescription = "Fechar pesquisa",
+                                modifier = modifier.testTag("close-icon")
                             )
                         }
                     }
