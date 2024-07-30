@@ -26,6 +26,10 @@ minSdk = "28"
 composeCompiler = "1.5.6"
 targetSdk = "34"
 compileSdk = "34"
+okhttpIdlingVersion = "1.0.0"
+espressoCoreVersion = "3.6.1"
+mockwebserverVersion = "4.12.0"
+tracingVersion = "1.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,6 +51,8 @@ retrofit2-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref =
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavCompose" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofitVersion" }
 okhttp3-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3Version" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
@@ -61,6 +67,12 @@ coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coi
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "nav" }
+
+okhttp-idling = { group = "com.jakewharton.espresso", name = "okhttp3-idling-resource", version.ref = "okhttpIdlingVersion" }
+
+mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "mockwebserverVersion" }
+
+androidx-tracing = { group = "androidx.tracing", name = "tracing", version.ref = "tracingVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
