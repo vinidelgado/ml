@@ -10,6 +10,7 @@ import com.vdelgado.ml.data.remote.data.MLProductItemPictureResponse
 import com.vdelgado.ml.data.remote.data.MLProductItemResponse
 import com.vdelgado.ml.data.remote.data.MLProductItemShippingResponse
 import com.vdelgado.ml.data.remote.data.MLProductResponse
+import com.vdelgado.ml.data.remote.data.MLSalePriceResponse
 import com.vdelgado.ml.data.remote.data.MLSearchProductResponse
 import com.vdelgado.ml.data.remote.data.MLShippingResponse
 import com.vdelgado.ml.data.remote.data.MLSortResponse
@@ -47,7 +48,18 @@ val mockMLSearchProductResponse = MLSearchProductResponse(
             currencyId = "ARS",
             price = 59999.99,
             originalPrice = 64999.99,
-            salePrice = 54999.99,
+            salePrice = MLSalePriceResponse(
+                priceId = "12345",
+                amount = 399.9,
+                conditions = emptyMap(),
+                currencyId = "BRL",
+                exchangeRate = null,
+                paymentMethodPrices = emptyList(),
+                paymentMethodType = "TMP",
+                regularAmount = null,
+                type = "standard",
+                metadata = emptyMap()
+            ),
             availableQuantity = 20,
             shipping = MLShippingResponse(
                 storePickUp = true,

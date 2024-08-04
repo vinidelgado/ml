@@ -30,10 +30,23 @@ data class MLProductResponse(
     @SerializedName("currency_id") val currencyId: String?,
     @SerializedName("price") val price: Double?,
     @SerializedName("original_price") val originalPrice: Double?,
-    @SerializedName("sale_price") val salePrice: Double?,
+    @SerializedName("sale_price") val salePrice: MLSalePriceResponse,
     @SerializedName("available_quantity") val availableQuantity: Int,
     @SerializedName("shipping") val shipping: MLShippingResponse?,
     @SerializedName("installments") val installments: MLInstallmentsResponse?,
+)
+
+data class MLSalePriceResponse(
+    @SerializedName("price_id") val priceId: String,
+    @SerializedName("amount") val amount: Double,
+    @SerializedName("conditions") val conditions: Map<String, Any>,
+    @SerializedName("currency_id") val currencyId: String,
+    @SerializedName("exchange_rate") val exchangeRate: Double? = null,
+    @SerializedName("payment_method_prices") val paymentMethodPrices: List<Any> = emptyList(),
+    @SerializedName("payment_method_type") val paymentMethodType: String = "TMP",
+    @SerializedName("regular_amount") val regularAmount: Double? = null,
+    @SerializedName("type") val type: String = "standard",
+    @SerializedName("metadata") val metadata: Map<String, Any> = emptyMap()
 )
 
 data class MLShippingResponse(
