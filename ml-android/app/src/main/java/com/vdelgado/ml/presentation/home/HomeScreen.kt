@@ -38,15 +38,16 @@ fun HomeScreen(
                     event(HomeViewModel.HomeEvent.UpdateSearchQuery(it))
                 },
                 onSearch = {
-                    if (active && state.searchQuery.isNotEmpty()) {
+                    if (state.searchQuery.isNotEmpty()) {
                         event(HomeViewModel.HomeEvent.SearchProduct)
-                        event(HomeViewModel.HomeEvent.UpdateSearchQuery(state.searchQuery))
                     }
                     active = false
                 },
                 active = active,
                 onActiveChange = {
-                    active = it
+                    if (state.searchQuery.isEmpty()) {
+                        active = it
+                    }
                 },
                 leadingIcon = {
                     Icon(
@@ -59,14 +60,14 @@ fun HomeScreen(
                     Text(text = "Buscar no Mercado Livre")
                 },
                 trailingIcon = {
-                    if (active) {
+                    if (active || state.searchQuery.isNotEmpty()) {
                         IconButton(onClick = {
                             if (state.searchQuery.isNotEmpty()) {
                                 event(HomeViewModel.HomeEvent.UpdateSearchQuery(""))
                             } else {
                                 active = false
                             }
-                        },modifier.testTag("clear-icon")) {
+                        }, modifier.testTag("clear-icon")) {
                             Icon(
                                 imageVector = Icons.Default.Close,
                                 contentDescription = "Fechar pesquisa",
@@ -77,7 +78,7 @@ fun HomeScreen(
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                //TODO: Inserir items
+
             }
         },
         modifier = modifier.fillMaxSize()
@@ -86,7 +87,8 @@ fun HomeScreen(
             val products = items.collectAsLazyPagingItems()
             ProductList(
                 products = products, modifier = Modifier
-                    .fillMaxWidth().testTag("product-list")
+                    .fillMaxWidth()
+                    .testTag("product-list")
                     .padding(innerPadding),
                 navigateToDetails = {
                     navigateToDetails(it)
