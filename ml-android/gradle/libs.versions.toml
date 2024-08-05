@@ -1,5 +1,6 @@
 [versions]
 accompanist = "0.31.4-beta"
+adaptive = "1.0.0-beta04"
 agp = "8.5.1"
 coil = "2.4.0"
 coreKtx = "1.13.1"
@@ -32,6 +33,9 @@ mockwebserverVersion = "4.12.0"
 tracingVersion = "1.2.0"
 
 [libraries]
+androidx-adaptive = { module = "androidx.compose.material3.adaptive:adaptive", version.ref = "adaptive" }
+androidx-adaptive-layout = { module = "androidx.compose.material3.adaptive:adaptive-layout", version.ref = "adaptive" }
+androidx-adaptive-navigation = { module = "androidx.compose.material3.adaptive:adaptive-navigation", version.ref = "adaptive" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
