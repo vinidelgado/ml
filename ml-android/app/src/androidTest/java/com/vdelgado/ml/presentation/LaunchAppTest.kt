@@ -40,8 +40,6 @@ class LaunchAppTest : BaseScreenTest() {
             with(LaunchScreenRobot(composeTestRule)) {
                 initialElementsShowed()
                 fillSearchProduct()
-                mainClock.advanceTimeBy(400L)
-                mainClock.autoAdvance = true
                 clickSearchButton()
                 productListShowed()
             }
