@@ -114,7 +114,7 @@ fun ProductImage(imageUrl: String?) {
                 .padding(4.dp),
             model = imageUrl,
             contentDescription = null,
-            contentScale = ContentScale.FillWidth
+            contentScale = ContentScale.Fit
         )
     }
 }
