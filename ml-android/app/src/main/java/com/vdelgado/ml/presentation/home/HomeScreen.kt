@@ -18,8 +18,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.testTag
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.vdelgado.ml.presentation.commons.EmptyScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -30,6 +33,8 @@ fun HomeScreen(
     navigateToDetails: (String) -> Unit
 ) {
     var active by rememberSaveable { mutableStateOf(false) }
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val focusManager = LocalFocusManager.current
     Scaffold(
         topBar = {
             SearchBar(
@@ -42,6 +47,8 @@ fun HomeScreen(
                         event(HomeViewModel.HomeEvent.SearchProduct)
                     }
                     active = false
+                    focusManager.clearFocus()
+                    keyboardController?.hide()
                 },
                 active = active,
                 onActiveChange = {
@@ -83,17 +90,23 @@ fun HomeScreen(
         },
         modifier = modifier.fillMaxSize()
     ) { innerPadding ->
-        state.products?.let { items ->
-            val products = items.collectAsLazyPagingItems()
-            ProductList(
-                products = products, modifier = Modifier
-                    .fillMaxWidth()
-                    .testTag("product-list")
-                    .padding(innerPadding),
-                navigateToDetails = {
-                    navigateToDetails(it)
-                }
-            )
+        if (state.searchQuery.isEmpty()) {
+            EmptyScreen(title = null, message = null)
+        } else {
+            state.products?.let { items ->
+                val products = items.collectAsLazyPagingItems()
+                ProductList(
+                    products = products, modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("product-list")
+                        .padding(innerPadding),
+                    navigateToDetails = {
+                        navigateToDetails(it)
+                    }
+                )
+            }
         }
+
+
     }
 }
