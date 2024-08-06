@@ -46,4 +46,8 @@ class LaunchScreenRobot(composeRule: ComposeTestRule) : Robot(composeRule) {
         productList.assertIsDisplayed()
     }
 
+    fun errorMessageShowed() {
+
+    }
+
 }

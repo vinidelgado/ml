@@ -1,6 +1,8 @@
 package com.vdelgado.ml.presentation
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.vdelgado.ml.presentation.common.error.ErrorRobot
+import com.vdelgado.ml.webmock.ErrorDispatcher
 import com.vdelgado.ml.webmock.SuccessDispatcher
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Test
@@ -46,4 +48,17 @@ class LaunchAppTest : BaseScreenTest() {
         }
     }
 
+    @Test
+    fun searchProductAndLoadErrorList() {
+        mockWebServer.dispatcher = ErrorDispatcher()
+        composeTestRule.apply {
+            waitForIdle()
+            with(LaunchScreenRobot(composeTestRule)) {
+                initialElementsShowed()
+                fillSearchProduct()
+                clickSearchButton()
+                ErrorRobot(composeTestRule).checkScreen()
+            }
+        }
+    }
 }
