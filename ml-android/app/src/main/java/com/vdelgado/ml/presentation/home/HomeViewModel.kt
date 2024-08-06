@@ -34,19 +34,21 @@ class HomeViewModel @Inject constructor(
     fun onEvent(event: HomeEvent) {
         when (event) {
             is HomeEvent.UpdateSearchQuery -> {
+                Timber.v("Call HomeEvent.UpdateSearchQuery")
                 _state.value = state.value.copy(
                     searchQuery = event.searchQuery
                 )
             }
 
             is HomeEvent.SearchProduct -> {
-                Timber.d("Call function to list products")
+                Timber.v("Call HomeEvent.SearchProduct")
                 searchProductPager()
             }
         }
     }
 
     private fun searchProductPager() {
+        Timber.v("Call HomeViewModel searchProductPager")
         val products = searchUserCase.invoke(state.value.searchQuery).cachedIn(viewModelScope)
         _state.value = _state.value.copy(products = products)
     }
