@@ -3,4 +3,6 @@
     <string name="condition_new">Novo</string>
     <string name="condition_used">Usado</string>
     <string name="condition_not_specified">Condição não especificada</string>
+    <string name="mlsearchbar_placeholder">Buscar no Mercado Livre</string>
+    <string name="mlsearchbar_clean_icon_button_content_description">Limpar pesquisa</string>
 </resources>
