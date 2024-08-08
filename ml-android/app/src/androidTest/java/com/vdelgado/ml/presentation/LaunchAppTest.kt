@@ -1,6 +1,5 @@
 package com.vdelgado.ml.presentation
 
-import androidx.compose.ui.test.isDisplayed
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.vdelgado.ml.presentation.common.error.ErrorRobot
 import com.vdelgado.ml.webmock.ErrorDispatcher
