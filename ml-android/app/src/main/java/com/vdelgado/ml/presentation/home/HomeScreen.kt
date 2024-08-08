@@ -128,7 +128,6 @@ private fun HomeAppBar(
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
     MLSearchBar(
-        onCloseClick = { /*TODO*/ },
         onSearchClick = {
             event(HomeViewModel.HomeEvent.SearchProduct)
             keyboardController?.hide()
