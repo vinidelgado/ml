@@ -11,6 +11,6 @@ class HomeRobot(composeRule: ComposeTestRule): Robot(composeRule) {
 
 
     fun checkInitialScreen(){
-        assertText("Buscar produto")
+        assertText("Buscar no Mercado Livre")
     }
 }
