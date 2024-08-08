@@ -20,13 +20,13 @@ import com.vdelgado.ml.presentation.home.HomeViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MLSearchBar(
+    modifier: Modifier = Modifier,
     onSearchClick: () -> Unit,
     onQueryChange: (String) -> Unit,
     state: HomeViewModel.HomeState,
 ) {
     SearchBar(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = modifier
             .padding(horizontal = 16.dp),
         placeholder = {
             Text(text = stringResource(R.string.mlsearchbar_placeholder))
