@@ -19,8 +19,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -63,7 +66,7 @@ fun VerticalProductItem(
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Light,
                 maxLines = 3,
-                fontSize = 16.sp
+                fontSize = 12.sp
             )
             if (originalPrice.isNotEmpty()) {
                 Spacer(modifier = Modifier.height(8.dp))
@@ -71,25 +74,19 @@ fun VerticalProductItem(
 
             Text(
                 text = originalPrice,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodySmall,
+                color = Color(0xFF919191),
                 textDecoration = TextDecoration.LineThrough
             )
             Text(
                 text = price,
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Normal,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Light,
                 color = Color.Black
             )
 
             if (installments.isNotEmpty()) {
-                val textColor =
-                    if (installments.contains("sem juros")) Color(0xFF009E5E) else Color.Black
-                Text(
-                    text = installments,
-                    style = MaterialTheme.typography.bodySmall,
-                    fontWeight = FontWeight.Light,
-                    color = textColor
-                )
+                ProductInstallments(installments = installments)
             }
 
             if (freeShipping) {
@@ -104,6 +101,44 @@ fun VerticalProductItem(
         }
     }
 }
+
+@Composable
+fun ProductInstallments(installments: String) {
+    if (installments.contains("sem juros")) {
+        if (installments.contains("em")) {
+            val text = buildAnnotatedString {
+                withStyle(style = SpanStyle(color = Color.Black)) {
+                    append("em")
+                }
+                withStyle(style = SpanStyle(color = Color(0xFF009E5E))) {
+                    append(installments.replace("em", ""))
+                }
+            }
+
+            Text(
+                text = text,
+                style = MaterialTheme.typography.bodySmall,
+                fontWeight = FontWeight.Light,
+                color = Color.Black
+            )
+        } else {
+            Text(
+                text = installments,
+                style = MaterialTheme.typography.bodySmall,
+                fontWeight = FontWeight.Light,
+                color = Color.Black
+            )
+        }
+    } else {
+        Text(
+            text = installments,
+            style = MaterialTheme.typography.bodySmall,
+            fontWeight = FontWeight.Light,
+            color = Color.Black
+        )
+    }
+}
+
 
 @Composable
 fun ProductImage(imageUrl: String?) {

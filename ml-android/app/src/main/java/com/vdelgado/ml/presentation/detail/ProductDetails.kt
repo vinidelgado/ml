@@ -2,6 +2,7 @@ package com.vdelgado.ml.presentation.detail
 
 import android.content.Intent
 import android.net.Uri
+import android.widget.Space
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,14 +15,19 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,25 +50,27 @@ fun ProductDetails(modifier: Modifier = Modifier, product: MLProductItem) {
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(start = 8.dp, end = 8.dp, top = 8.dp)
+            .padding(start = 16.dp, end = 16.dp, top = 8.dp)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.Start
     ) {
         FirstLineInfomartion(product = product)
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(2.dp))
         Text(
             product.title,
-            fontWeight = FontWeight.Normal,
-            fontSize = 20.sp,
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Light,
             modifier = Modifier.fillMaxWidth()
         )
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(16.dp))
+
+
 
         CarrouselImages(product = product)
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(24.dp))
 
-        Warranty(product = product)
+//        Warranty(product = product)
 
         ProductPrice(product = product)
 
@@ -86,12 +94,12 @@ fun ProductDetails(modifier: Modifier = Modifier, product: MLProductItem) {
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(60.dp)
+                .height(64.dp)
                 .padding(bottom = 8.dp)
         ) {
             Text(
                 text = "Comprar",
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
             )
         }
@@ -113,11 +121,11 @@ fun ProductPrice(product: MLProductItem) {
     Text(
         text = product.price,
         style = MaterialTheme.typography.headlineLarge,
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Light,
         color = Color.Black
     )
 
-    Spacer(modifier = Modifier.height(16.dp))
+    Spacer(modifier = Modifier.height(48.dp))
 }
 
 @Composable
@@ -166,6 +174,22 @@ fun CarrouselImages(modifier: Modifier = Modifier, product: MLProductItem) {
     val pagerState = rememberPagerState(pageCount = {
         product.pictures.size
     })
+    Box(
+        modifier = Modifier
+            .wrapContentSize()
+            .clip(RoundedCornerShape(12.dp))
+            .background(Color(0xFFF5F5F5))
+
+    ) {
+        val currentPage = pagerState.currentPage + 1
+        Text(
+            modifier = Modifier.padding(vertical = 2.dp, horizontal = 8.dp),
+            style = MaterialTheme.typography.bodySmall,
+            fontWeight = FontWeight.SemiBold,
+            text = "${currentPage}/${pagerState.pageCount}"
+        )
+    }
+    Spacer(modifier = Modifier.height(4.dp))
     HorizontalPager(
         state = pagerState,
         modifier = modifier,
@@ -173,10 +197,22 @@ fun CarrouselImages(modifier: Modifier = Modifier, product: MLProductItem) {
         BannerCard(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(350.dp),
+                .height(280.dp),
             imageUrl = product.pictures[page]
         )
     }
+
+//    Box(
+//        modifier = Modifier
+//            .wrapContentSize()
+//            .clip(CircleShape)
+//            .background(Color(0xFFF5F5F5))
+//
+//    ) {
+//        Icon(imageVector = Icons.Outlined.Share, contentDescription = "Share", tint = Color(0xFF4285F4), modifier = Modifier.padding(6.dp) )
+//    }
+
+    Spacer(modifier = Modifier.height(20.dp))
     Row(
         Modifier
             .wrapContentHeight()
@@ -223,8 +259,10 @@ fun FirstLineInfomartion(modifier: Modifier = Modifier, product: MLProductItem) 
         Text(
             text = productCondition,
             fontWeight = FontWeight.Light,
-            fontSize = 14.sp,
-            modifier = Modifier.fillMaxWidth()
+            fontSize = 11.sp,
+            modifier = Modifier
+                .wrapContentSize()
+                .padding(vertical = 2.dp)
         )
     }
 }
