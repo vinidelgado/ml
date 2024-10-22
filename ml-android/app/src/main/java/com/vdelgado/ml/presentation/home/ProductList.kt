@@ -88,7 +88,7 @@ fun CompactProductList(
                     imageUrl = product.imageUrl,
                     freeShipping = product.freeShipping,
                     installments = product.installments,
-                    officialSeller = product.sellerName,
+                    officialSeller = product.officialStore,
                     modifier = Modifier.clickable {
                         navigateToDetails(product.itemId)
                     }

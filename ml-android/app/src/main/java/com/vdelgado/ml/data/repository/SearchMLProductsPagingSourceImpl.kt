@@ -4,6 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.vdelgado.ml.data.remote.common.MLServiceApi
 import com.vdelgado.ml.data.remote.data.MLInstallmentsResponse
+import com.vdelgado.ml.data.remote.data.MLProductResponse
 import com.vdelgado.ml.data.remote.data.MLShippingResponse
 import com.vdelgado.ml.domain.model.MLProductFormatted
 import okio.IOException
@@ -32,21 +33,7 @@ class SearchMLProductsPagingSourceImpl(
 
             val products = apiResponse.results.distinctBy { it.id }
 
-            val productsFormatted = products.map { product ->
-                MLProductFormatted(
-                    title = product.title,
-                    originalPrice = discountPriceIsAvailable(
-                        product.currencyId,
-                        product.originalPrice
-                    ),
-                    price = formatPriceWithCurrencyIndicator(product.currencyId, product.price),
-                    freeShipping = isFreeShipping(product.shipping),
-                    imageUrl = product.thumbnail ?: "",
-                    installments = isInstallmentsAvailable(product.installments),
-                    itemId = product.id,
-                    sellerName = product.officialStoreName ?: ""
-                )
-            }
+            val productsFormatted = mapApiToMlProductFormatted(products)
 
             LoadResult.Page(
                 data = productsFormatted,
@@ -78,9 +65,19 @@ class SearchMLProductsPagingSourceImpl(
 
     private fun isFreeShipping(mlShipping: MLShippingResponse?) = mlShipping?.freeShipping ?: false
 
-    private fun discountPriceIsAvailable(currencyId: String?, originalPrice: Double?): String {
-        val price = originalPrice ?: 0.0
-        return formatPriceWithCurrencyIndicator(currencyId, price)
+    private fun discountPriceIsAvailable(
+        currencyId: String?,
+        originalPrice: Double?,
+        price: Double?
+    ): String {
+        val finalOriginalPrice = originalPrice ?: 0.0
+        val finalPrice = price ?: 0.0
+
+        return if (finalOriginalPrice > finalPrice) {
+            formatPriceWithCurrencyIndicator(currencyId, finalOriginalPrice)
+        } else {
+            ""
+        }
     }
 
     private fun formatPriceWithCurrencyIndicator(currency: String?, price: Double?): String {
@@ -107,4 +104,22 @@ class SearchMLProductsPagingSourceImpl(
         }
         return ""
     }
+
+    private fun mapApiToMlProductFormatted(products: List<MLProductResponse>) =
+        products.map { product ->
+            MLProductFormatted(
+                title = product.title,
+                originalPrice = discountPriceIsAvailable(
+                    product.currencyId,
+                    product.originalPrice,
+                    product.price
+                ),
+                price = formatPriceWithCurrencyIndicator(product.currencyId, product.price),
+                freeShipping = isFreeShipping(product.shipping),
+                imageUrl = product.thumbnail ?: "",
+                installments = isInstallmentsAvailable(product.installments),
+                itemId = product.id,
+                officialStore = product.officialStoreName ?: "",
+            )
+        }
 }

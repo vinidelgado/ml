@@ -8,5 +8,5 @@ data class MLProductFormatted(
     val freeShipping: Boolean,
     val imageUrl: String,
     val installments: String,
-    val sellerName:String
+    val officialStore:String,
 )

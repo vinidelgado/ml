@@ -77,14 +77,14 @@ fun VerticalProductItem(
             )
             if (originalPrice.isNotEmpty()) {
                 Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = originalPrice,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Color(0xFF919191),
+                    textDecoration = TextDecoration.LineThrough
+                )
             }
 
-            Text(
-                text = originalPrice,
-                style = MaterialTheme.typography.bodySmall,
-                color = Color(0xFF919191),
-                textDecoration = TextDecoration.LineThrough
-            )
             Text(
                 text = price,
                 style = MaterialTheme.typography.titleMedium,
