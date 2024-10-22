@@ -43,7 +43,8 @@ class SearchMLProductsPagingSourceImpl(
                     freeShipping = isFreeShipping(product.shipping),
                     imageUrl = product.thumbnail ?: "",
                     installments = isInstallmentsAvailable(product.installments),
-                    itemId = product.id
+                    itemId = product.id,
+                    sellerName = product.officialStoreName ?: ""
                 )
             }
 

@@ -88,12 +88,13 @@ fun CompactProductList(
                     imageUrl = product.imageUrl,
                     freeShipping = product.freeShipping,
                     installments = product.installments,
+                    officialSeller = product.sellerName,
                     modifier = Modifier.clickable {
                         navigateToDetails(product.itemId)
                     }
                 )
                 if (index < products.itemCount)
-                    HorizontalDivider(color = Color(0xFFEFEFEF), thickness = 1.dp)
+                    HorizontalDivider(color = Color(0xFFDEDEDE), thickness = 1.dp)
             }
         }
     }

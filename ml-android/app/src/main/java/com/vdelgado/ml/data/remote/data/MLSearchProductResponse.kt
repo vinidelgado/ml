@@ -11,7 +11,7 @@ data class MLSearchProductResponse(
     @SerializedName("sort") val sort: MLSortResponse,
     @SerializedName("available_sorts") val availableSorts: List<MLSortResponse>,
     @SerializedName("filters") val filters: List<MLFilterResponse>,
-    @SerializedName("available_filters") val availableFilters: List<MLAvailableFilter>
+    @SerializedName("available_filters") val availableFilters: List<MLAvailableFilter>,
 )
 
 data class MLPagingResponse(
@@ -34,6 +34,13 @@ data class MLProductResponse(
     @SerializedName("available_quantity") val availableQuantity: Int,
     @SerializedName("shipping") val shipping: MLShippingResponse?,
     @SerializedName("installments") val installments: MLInstallmentsResponse?,
+    @SerializedName("seller") val seller:MLSellerResponse?,
+    @SerializedName("official_store_name") val officialStoreName: String?
+)
+
+data class MLSellerResponse(
+    @SerializedName("id") val sellerId: Int,
+    @SerializedName("nickname") val nickName: String,
 )
 
 data class MLSalePriceResponse(

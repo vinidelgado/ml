@@ -7,5 +7,6 @@ data class MLProductFormatted(
     val price: String,
     val freeShipping: Boolean,
     val imageUrl: String,
-    val installments: String
+    val installments: String,
+    val sellerName:String
 )
