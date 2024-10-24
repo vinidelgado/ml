@@ -15,10 +15,10 @@ import com.vdelgado.ml.data.remote.data.MLSearchProductResponse
 import com.vdelgado.ml.data.remote.data.MLShippingResponse
 import com.vdelgado.ml.data.remote.data.MLSortResponse
 import com.vdelgado.ml.data.remote.data.PathFromRoot
-import com.vdelgado.ml.domain.model.MLProductFormatted
+import com.vdelgado.ml.domain.model.MLProductScreenFormatted
 import com.vdelgado.ml.domain.model.MLProductItem
 
-val mockMLProductFormatted = MLProductFormatted(
+val mockMLProductScreenFormatted = MLProductScreenFormatted(
     title = "Smartphone XYZ",
     originalPrice = "\$64,999.99",
     price = "\$59,999.99",

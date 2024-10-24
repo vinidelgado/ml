@@ -6,7 +6,7 @@ import com.vdelgado.ml.data.remote.common.MLServiceApi
 import com.vdelgado.ml.data.remote.data.MLInstallmentsResponse
 import com.vdelgado.ml.data.remote.data.MLProductResponse
 import com.vdelgado.ml.data.remote.data.MLShippingResponse
-import com.vdelgado.ml.domain.model.MLProductFormatted
+import com.vdelgado.ml.domain.model.MLProductScreenFormatted
 import okio.IOException
 import retrofit2.HttpException
 import timber.log.Timber
@@ -16,11 +16,11 @@ import java.util.Locale
 class SearchMLProductsPagingSourceImpl(
     private val api: MLServiceApi,
     private val searchQuery: String,
-) : PagingSource<Int, MLProductFormatted>() {
+) : PagingSource<Int, MLProductScreenFormatted>() {
 
     private var totalProductCount = 0
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MLProductFormatted> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MLProductScreenFormatted> {
         val page = params.key ?: 0
         return try {
             val apiResponse = api.searchProduct(
@@ -56,7 +56,7 @@ class SearchMLProductsPagingSourceImpl(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, MLProductFormatted>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, MLProductScreenFormatted>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
@@ -107,7 +107,7 @@ class SearchMLProductsPagingSourceImpl(
 
     private fun mapApiToMlProductFormatted(products: List<MLProductResponse>) =
         products.map { product ->
-            MLProductFormatted(
+            MLProductScreenFormatted(
                 title = product.title,
                 originalPrice = discountPriceIsAvailable(
                     product.currencyId,

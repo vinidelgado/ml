@@ -15,14 +15,14 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.window.core.layout.WindowWidthSizeClass
 import com.vdelgado.ml.data.remote.NoNetworkException
-import com.vdelgado.ml.domain.model.MLProductFormatted
+import com.vdelgado.ml.domain.model.MLProductScreenFormatted
 import com.vdelgado.ml.presentation.commons.ErrorScreen
 import com.vdelgado.ml.presentation.commons.ProgressLoading
 
 @Composable
 fun ProductList(
     modifier: Modifier = Modifier,
-    products: LazyPagingItems<MLProductFormatted>,
+    products: LazyPagingItems<MLProductScreenFormatted>,
     navigateToDetails: (String) -> Unit
 ) {
     val handlingResult = handlePagingResults(products)
@@ -45,7 +45,7 @@ fun ProductList(
 @Composable
 fun ExpandedProductList(
     modifier: Modifier = Modifier,
-    products: LazyPagingItems<MLProductFormatted>,
+    products: LazyPagingItems<MLProductScreenFormatted>,
     navigateToDetails: (String) -> Unit
 ) {
     LazyVerticalStaggeredGrid(
@@ -75,7 +75,7 @@ fun ExpandedProductList(
 @Composable
 fun CompactProductList(
     modifier: Modifier = Modifier,
-    products: LazyPagingItems<MLProductFormatted>,
+    products: LazyPagingItems<MLProductScreenFormatted>,
     navigateToDetails: (String) -> Unit
 ) {
     LazyColumn(modifier = modifier, verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -103,7 +103,7 @@ fun CompactProductList(
 
 @Composable
 fun handlePagingResults(
-    products: LazyPagingItems<MLProductFormatted>
+    products: LazyPagingItems<MLProductScreenFormatted>
 ): Boolean {
 
     val loadState = products.loadState

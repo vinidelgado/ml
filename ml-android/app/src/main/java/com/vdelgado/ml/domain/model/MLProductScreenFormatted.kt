@@ -1,6 +1,6 @@
 package com.vdelgado.ml.domain.model
 
-data class MLProductFormatted(
+data class MLProductScreenFormatted(
     val itemId: String,
     val title: String,
     val originalPrice: String,

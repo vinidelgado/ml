@@ -5,7 +5,7 @@ import com.vdelgado.ml.data.remote.NoNetworkException
 import com.vdelgado.ml.data.remote.common.MLServiceApi
 import com.vdelgado.ml.data.remote.data.MLSearchProductResponse
 import com.vdelgado.ml.data.repository.SearchMLProductsPagingSourceImpl
-import com.vdelgado.ml.mock.mockMLProductFormatted
+import com.vdelgado.ml.mock.mockMLProductScreenFormatted
 import com.vdelgado.ml.mock.mockMLSearchProductResponse
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -54,7 +54,7 @@ class SearchMLProductsPagingSourceImplTest {
         } returns mockMLSearchProductResponse
 
         val expectedResult = PagingSource.LoadResult.Page(
-            data = listOf(mockMLProductFormatted),
+            data = listOf(mockMLProductScreenFormatted),
             prevKey = null,
             nextKey = 1
         )
