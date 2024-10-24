@@ -62,6 +62,7 @@ fun ExpandedProductList(
                     imageUrl = product.imageUrl,
                     freeShipping = product.freeShipping,
                     installments = product.installments,
+                    officialSeller = product.officialStore,
                     modifier = Modifier.clickable {
                         navigateToDetails(product.itemId)
                     }

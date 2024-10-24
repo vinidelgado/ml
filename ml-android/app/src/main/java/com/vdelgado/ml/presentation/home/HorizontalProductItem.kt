@@ -36,11 +36,12 @@ fun HorizontalProductItem(
     price: String,
     freeShipping: Boolean = false,
     installments: String,
+    officialSeller:String?
 ) {
     Column(
         modifier = modifier
             .fillMaxWidth(0.3f)
-            .height(400.dp)
+            .height(450.dp)
             .padding(8.dp)
     ) {
         Column(
@@ -63,35 +64,31 @@ fun HorizontalProductItem(
                 text = title,
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Light,
-                maxLines = 2,
-                fontSize = 16.sp,
+                maxLines = 3,
+                fontSize = 12.sp
             )
 
             Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = price,
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Normal,
-                color = Color.Black,
-            )
 
             if (originalPrice.isNotEmpty()) {
+                Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = originalPrice,
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Color(0xFF919191),
                     textDecoration = TextDecoration.LineThrough
                 )
             }
 
+            Text(
+                text = price,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Light,
+                color = Color.Black
+            )
+
             if (installments.isNotEmpty()) {
-                val textColor =
-                    if (installments.contains("sem juros")) Color(0xFF009E5E) else Color.Black
-                Text(
-                    text = installments,
-                    style = MaterialTheme.typography.bodySmall,
-                    fontWeight = FontWeight.Light,
-                    color = textColor
-                )
+                ProductInstallments(installments = installments)
             }
 
             if (freeShipping) {
@@ -103,6 +100,12 @@ fun HorizontalProductItem(
                     color = Color(0xFF38AA74)
                 )
             }
+
+            if (!officialSeller.isNullOrEmpty()) {
+                Spacer(modifier = Modifier.height(12.dp))
+                ProductOfficialSeller(officialSeller)
+            }
+
         }
     }
 }
@@ -137,7 +140,8 @@ private fun ProductItemPreview() {
                 price = "R$ 750,00",
                 imageUrl = null,
                 freeShipping = true,
-                installments = "em 12x de R$ 69,99 sem juros"
+                installments = "em 12x de R$ 69,99 sem juros",
+                officialSeller = "Amazon"
             )
         }
     }
