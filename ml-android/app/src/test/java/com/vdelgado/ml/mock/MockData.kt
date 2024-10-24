@@ -12,6 +12,7 @@ import com.vdelgado.ml.data.remote.data.MLProductItemShippingResponse
 import com.vdelgado.ml.data.remote.data.MLProductResponse
 import com.vdelgado.ml.data.remote.data.MLSalePriceResponse
 import com.vdelgado.ml.data.remote.data.MLSearchProductResponse
+import com.vdelgado.ml.data.remote.data.MLSellerResponse
 import com.vdelgado.ml.data.remote.data.MLShippingResponse
 import com.vdelgado.ml.data.remote.data.MLSortResponse
 import com.vdelgado.ml.data.remote.data.PathFromRoot
@@ -25,7 +26,8 @@ val mockMLProductScreenFormatted = MLProductScreenFormatted(
     freeShipping = false,
     imageUrl = "http://example.com/thumbnail.jpg",
     installments = "em 12x \$4,999.99 sem juros",
-    itemId = "MLA123456"
+    itemId = "MLA123456",
+    officialStore = "ML"
 )
 
 val mockMLSearchProductResponse = MLSearchProductResponse(
@@ -71,12 +73,14 @@ val mockMLSearchProductResponse = MLSearchProductResponse(
                 promise = "next day",
                 shippingScore = 90
             ),
+            seller = MLSellerResponse(0,"ML"),
             installments = MLInstallmentsResponse(
                 quantity = 12,
                 amount = 4999.99,
                 rate = 0.0,
                 currencyId = "ARS"
-            )
+            ),
+            officialStoreName = "ML"
         )
     ),
     sort = MLSortResponse(
