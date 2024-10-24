@@ -45,12 +45,12 @@ fun NavGraph(startDestination: String) {
             }
         ) {
             val productDetailViewModel: ProductDetailViewModel = hiltViewModel()
-            navController.previousBackStackEntry?.savedStateHandle?.get<String>("itemId")
-                ?.let { itemId ->
+            navController.previousBackStackEntry?.savedStateHandle?.get<MLProductScreenFormatted>("product")
+                ?.let { product ->
                     ProductDetailScreen(
                         state = productDetailViewModel.state,
                         event = productDetailViewModel::onEvent,
-                        itemId = itemId,
+                        productSelected = product,
                         onBackClick = {
                             navController.navigateUp()
                         }
@@ -66,8 +66,8 @@ private fun navigateToDetail(
     product: MLProductScreenFormatted
 ) {
     navController.currentBackStackEntry?.savedStateHandle?.set(
-        "itemId",
-        product.itemId
+        "product",
+        product
     )
 
     navController.navigate(

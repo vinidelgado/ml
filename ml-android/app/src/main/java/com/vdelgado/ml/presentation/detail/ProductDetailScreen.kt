@@ -13,6 +13,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
+import com.vdelgado.ml.domain.model.MLProductScreenFormatted
 import com.vdelgado.ml.presentation.commons.ErrorScreen
 import com.vdelgado.ml.ui.theme.MLPrimary
 
@@ -22,7 +23,7 @@ fun ProductDetailScreen(
     state: State<ProductDetailViewModel.ProductDetailState>,
     event: (ProductDetailViewModel.ProductDetailEvent) -> Unit,
     onBackClick: () -> Unit,
-    itemId: String
+    productSelected: MLProductScreenFormatted
 ) {
     Scaffold(
         topBar = {
@@ -48,11 +49,15 @@ fun ProductDetailScreen(
             ErrorScreen(state.value.isNetworkError)
         } else {
             state.value.product?.let { product ->
-                ProductDetails(modifier = Modifier.padding(innerPadding), product = product)
+                ProductDetails(
+                    modifier = Modifier.padding(innerPadding),
+                    productSelected = productSelected,
+                    product = product
+                )
             }
         }
     }
 
-    event(ProductDetailViewModel.ProductDetailEvent.UpdateProductProduct(itemId))
+    event(ProductDetailViewModel.ProductDetailEvent.UpdateProductProduct(productSelected.itemId))
     event(ProductDetailViewModel.ProductDetailEvent.GetInfoProduct)
 }

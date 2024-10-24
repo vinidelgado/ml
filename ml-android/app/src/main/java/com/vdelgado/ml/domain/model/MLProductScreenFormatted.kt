@@ -1,5 +1,9 @@
 package com.vdelgado.ml.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class MLProductScreenFormatted(
     val itemId: String,
     val title: String,
@@ -9,4 +13,4 @@ data class MLProductScreenFormatted(
     val imageUrl: String,
     val installments: String,
     val officialStore:String,
-)
+): Parcelable

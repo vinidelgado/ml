@@ -39,9 +39,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vdelgado.ml.R
 import com.vdelgado.ml.domain.model.MLProductItem
+import com.vdelgado.ml.domain.model.MLProductScreenFormatted
+import com.vdelgado.ml.presentation.home.ProductInstallments
 
 @Composable
-fun ProductDetails(modifier: Modifier = Modifier, product: MLProductItem) {
+fun ProductDetails(
+    modifier: Modifier = Modifier,
+    product: MLProductItem,
+    productSelected: MLProductScreenFormatted
+) {
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -52,14 +58,12 @@ fun ProductDetails(modifier: Modifier = Modifier, product: MLProductItem) {
         FirstLineInfomartion(product = product)
         Spacer(modifier = Modifier.height(2.dp))
         Text(
-            product.title,
+            productSelected.title,
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Light,
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(16.dp))
-
-
 
         CarrouselImages(product = product)
 
@@ -67,7 +71,13 @@ fun ProductDetails(modifier: Modifier = Modifier, product: MLProductItem) {
 
 //        Warranty(product = product)
 
-        ProductPrice(product = product)
+        ProductPrice(product = productSelected)
+
+        if (productSelected.installments.isNotEmpty()) {
+            ProductInstallments(installments = productSelected.installments)
+        }
+
+        Spacer(modifier = Modifier.height(48.dp))
 
         LastQuantity(product = product)
 
@@ -102,7 +112,7 @@ fun ProductDetails(modifier: Modifier = Modifier, product: MLProductItem) {
 }
 
 @Composable
-fun ProductPrice(product: MLProductItem) {
+fun ProductPrice(product: MLProductScreenFormatted) {
     if (product.originalPrice.isNotEmpty()) {
         Text(
             text = product.originalPrice,
@@ -119,8 +129,6 @@ fun ProductPrice(product: MLProductItem) {
         fontWeight = FontWeight.Light,
         color = Color.Black
     )
-
-    Spacer(modifier = Modifier.height(48.dp))
 }
 
 @Composable
@@ -196,16 +204,6 @@ fun CarrouselImages(modifier: Modifier = Modifier, product: MLProductItem) {
             imageUrl = product.pictures[page]
         )
     }
-
-//    Box(
-//        modifier = Modifier
-//            .wrapContentSize()
-//            .clip(CircleShape)
-//            .background(Color(0xFFF5F5F5))
-//
-//    ) {
-//        Icon(imageVector = Icons.Outlined.Share, contentDescription = "Share", tint = Color(0xFF4285F4), modifier = Modifier.padding(6.dp) )
-//    }
 
     Spacer(modifier = Modifier.height(20.dp))
     Row(
