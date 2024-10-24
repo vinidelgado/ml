@@ -23,7 +23,7 @@ import com.vdelgado.ml.presentation.commons.ProgressLoading
 fun ProductList(
     modifier: Modifier = Modifier,
     products: LazyPagingItems<MLProductScreenFormatted>,
-    navigateToDetails: (String) -> Unit
+    navigateToDetails: (MLProductScreenFormatted) -> Unit
 ) {
     val handlingResult = handlePagingResults(products)
     if (handlingResult) {
@@ -46,7 +46,7 @@ fun ProductList(
 fun ExpandedProductList(
     modifier: Modifier = Modifier,
     products: LazyPagingItems<MLProductScreenFormatted>,
-    navigateToDetails: (String) -> Unit
+    navigateToDetails: (MLProductScreenFormatted) -> Unit
 ) {
     LazyVerticalStaggeredGrid(
         modifier = modifier,
@@ -64,7 +64,7 @@ fun ExpandedProductList(
                     installments = product.installments,
                     officialSeller = product.officialStore,
                     modifier = Modifier.clickable {
-                        navigateToDetails(product.itemId)
+                        navigateToDetails(product)
                     }
                 )
             }
@@ -76,7 +76,7 @@ fun ExpandedProductList(
 fun CompactProductList(
     modifier: Modifier = Modifier,
     products: LazyPagingItems<MLProductScreenFormatted>,
-    navigateToDetails: (String) -> Unit
+    navigateToDetails: (MLProductScreenFormatted) -> Unit
 ) {
     LazyColumn(modifier = modifier, verticalArrangement = Arrangement.spacedBy(12.dp)) {
         items(products.itemCount) { index ->
@@ -91,7 +91,7 @@ fun CompactProductList(
                     installments = product.installments,
                     officialSeller = product.officialStore,
                     modifier = Modifier.clickable {
-                        navigateToDetails(product.itemId)
+                        navigateToDetails(product)
                     }
                 )
                 if (index < products.itemCount)

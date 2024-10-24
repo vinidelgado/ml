@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.testTag
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.vdelgado.ml.domain.model.MLProductScreenFormatted
 import com.vdelgado.ml.presentation.commons.EmptyScreen
 import com.vdelgado.ml.presentation.commons.MLSearchBar
 
@@ -17,7 +18,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     state: HomeViewModel.HomeState,
     event: (HomeViewModel.HomeEvent) -> Unit,
-    navigateToDetails: (String) -> Unit
+    navigateToDetails: (MLProductScreenFormatted) -> Unit
 ) {
     Scaffold(
         topBar = {

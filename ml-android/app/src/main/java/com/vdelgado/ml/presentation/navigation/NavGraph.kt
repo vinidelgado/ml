@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.vdelgado.ml.domain.model.MLProductScreenFormatted
 import com.vdelgado.ml.presentation.detail.ProductDetailScreen
 import com.vdelgado.ml.presentation.detail.ProductDetailViewModel
 import com.vdelgado.ml.presentation.home.HomeScreen
@@ -62,11 +63,11 @@ fun NavGraph(startDestination: String) {
 
 private fun navigateToDetail(
     navController: NavController,
-    itemId: String
+    product: MLProductScreenFormatted
 ) {
     navController.currentBackStackEntry?.savedStateHandle?.set(
         "itemId",
-        itemId
+        product.itemId
     )
 
     navController.navigate(
