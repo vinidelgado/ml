@@ -147,14 +147,14 @@ fun ProductInstallments(installments: String) {
 
             Text(
                 text = text,
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Light,
                 color = Color.Black
             )
         } else {
             Text(
                 text = installments,
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Light,
                 color = Color.Black
             )
@@ -162,7 +162,7 @@ fun ProductInstallments(installments: String) {
     } else {
         Text(
             text = installments,
-            style = MaterialTheme.typography.bodySmall,
+            style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.Light,
             color = Color.Black
         )

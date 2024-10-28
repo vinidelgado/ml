@@ -33,8 +33,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.vdelgado.ml.R
@@ -67,9 +70,7 @@ fun ProductDetails(
 
         CarrouselImages(product = product)
 
-        Spacer(modifier = Modifier.height(24.dp))
-
-//        Warranty(product = product)
+        Spacer(modifier = Modifier.height(36.dp))
 
         ProductPrice(product = productSelected)
 
@@ -79,7 +80,7 @@ fun ProductDetails(
 
         Spacer(modifier = Modifier.height(48.dp))
 
-        LastQuantity(product = product)
+        StockAvailable(product = product)
 
         val context = LocalContext.current
         val intent = remember {
@@ -132,14 +133,57 @@ fun ProductPrice(product: MLProductScreenFormatted) {
 }
 
 @Composable
-fun LastQuantity(product: MLProductItem) {
+fun StockAvailable(product: MLProductItem) {
     if (product.quantity == 1) {
         Text(
             text = "Último disponível!",
             style = MaterialTheme.typography.bodySmall,
-            fontWeight = FontWeight.Normal,
+            fontWeight = FontWeight.Bold,
             color = Color.Black
         )
+    } else {
+        Text(
+            text = "Estoque disponível",
+            style = MaterialTheme.typography.bodyLarge,
+            fontWeight = FontWeight.SemiBold,
+            color = Color.Black
+        )
+        Spacer(modifier = Modifier.height(24.dp))
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .background(color = Color(0xFFF5F5F5), shape = RoundedCornerShape(4.dp)),
+            verticalArrangement = Arrangement.Center
+        ) {
+            val quantity = if (product.quantity > 50) {
+                "(+50 disponíveis)"
+            } else {
+                "(${product.quantity} disponíveis)"
+            }
+
+            val text = buildAnnotatedString {
+                withStyle(style = SpanStyle(color = Color.Black)) {
+                    append("Quantidade: ")
+                }
+                withStyle(style = SpanStyle(color = Color.Black, fontWeight = FontWeight.Bold)) {
+                    append("1  ")
+                }
+                withStyle(style = SpanStyle(color = Color(0xFFB3B3B3))) {
+                    append(quantity)
+                }
+            }
+
+            Text(
+                text = text,
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Light,
+                color = Color.Black,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(12.dp)
+            )
+        }
     }
 
     Spacer(modifier = Modifier.height(16.dp))
@@ -200,7 +244,7 @@ fun CarrouselImages(modifier: Modifier = Modifier, product: MLProductItem) {
         BannerCard(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(280.dp),
+                .height(300.dp),
             imageUrl = product.pictures[page]
         )
     }

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.vdelgado.ml.domain.model.MLProductFormatted
+import com.vdelgado.ml.domain.model.MLProductScreenFormatted
 import com.vdelgado.ml.domain.usecase.product.MLSearchProductUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -22,8 +22,8 @@ class HomeViewModel @Inject constructor(
     val state: State<HomeState> = _state
 
     data class HomeState(
-        val searchQuery: String = "",
-        val products: Flow<PagingData<MLProductFormatted>>? = null
+        val searchQuery: String = "Apple Watch S8 45mm",
+        val products: Flow<PagingData<MLProductScreenFormatted>>? = null
     )
 
     sealed class HomeEvent {
