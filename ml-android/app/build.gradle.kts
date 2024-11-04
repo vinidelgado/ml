@@ -98,6 +98,8 @@ dependencies {
     implementation (libs.androidx.adaptive.layout)
     implementation (libs.androidx.adaptive.navigation)
 
+    implementation(libs.androidx.core.splashscreen)
+
 
     api(libs.mockk)
     api(libs.coroutines.test)

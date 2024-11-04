@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.ML.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#FFE602</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_melico_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.ML</item>
+    </style>
+</resources>
