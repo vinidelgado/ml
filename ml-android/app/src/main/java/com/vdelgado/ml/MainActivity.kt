@@ -29,6 +29,7 @@ class MainActivity : ComponentActivity() {
             )
         )
         setContent {
+            enableEdgeToEdge()
             MLTheme {
                 Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background)) {
                     NavGraph(startDestination = Route.HomeScreen.router)
