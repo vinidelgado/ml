@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.hilt.android)
+    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.compose.compiler)
     id(libs.plugins.kotlin.parcelize.get().pluginId)
     id(libs.plugins.kotlin.kapt.get().pluginId)
 }
